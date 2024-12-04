@@ -1,13 +1,11 @@
 package com.lingolearnhub;
 
-import com.lingolearnhub.controller.LearningController;
-import com.lingolearnhub.controller.ReportController;
-import com.lingolearnhub.entity.UserProgress;
-import com.lingolearnhub.entity.VocabularySet;
-import com.lingolearnhub.entity.Word;
-import com.lingolearnhub.strategy.FlashcardStrategy;
-import com.lingolearnhub.view.LearningView;
-import com.lingolearnhub.view.ReportView;
+import com.lingolearnhub.learning.LearningController;
+import com.lingolearnhub.learning.LearningView;
+import com.lingolearnhub.learning.strategy.FlashcardStrategy;
+import com.lingolearnhub.model.UserProgress;
+import com.lingolearnhub.model.VocabularySet;
+import com.lingolearnhub.model.Word;
 
 public class App {
     public static void main(String[] args) {

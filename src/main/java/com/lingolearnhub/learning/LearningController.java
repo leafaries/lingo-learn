@@ -1,14 +1,13 @@
-package com.lingolearnhub.controller;
+package com.lingolearnhub.learning;
 
-import com.lingolearnhub.strategy.LearningStrategy;
-import com.lingolearnhub.view.LearningView;
-import com.lingolearnhub.entity.UserProgress;
-import com.lingolearnhub.entity.VocabularySet;
+import com.lingolearnhub.learning.strategy.LearningStrategy;
+import com.lingolearnhub.model.UserProgress;
+import com.lingolearnhub.model.VocabularySet;
 
 public class LearningController {
     private final LearningView view;
-    private final UserProgress progress;
-    private final VocabularySet vocabularySet;
+    private UserProgress progress;
+    private VocabularySet vocabularySet;
     private LearningStrategy strategy;
 
     public LearningController(LearningView view, VocabularySet vocabularySet, UserProgress progress) {
@@ -24,5 +23,10 @@ public class LearningController {
     public void startLearning() {
         view.displayVocabulary(vocabularySet);
         strategy.applyStrategy(vocabularySet, view, progress);
+        view.displayProgress(progress); // Call to display progress directly
+    }
+
+    public void setVocabularySet(VocabularySet vocabularySet) {
+        this.vocabularySet = vocabularySet;
     }
 }

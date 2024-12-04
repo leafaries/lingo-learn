@@ -1,3 +1,3 @@
-package com.lingolearnhub.entity;
+package com.og;
 
 public record Word(String word, String translation) {}

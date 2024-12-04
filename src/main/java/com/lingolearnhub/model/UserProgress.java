@@ -1,5 +1,8 @@
-package com.lingolearnhub.entity;
+package com.lingolearnhub.model;
 
+/**
+ * Śledzi postępy użytkownika.
+ */
 public class UserProgress {
     private int correctAnswers;
     private int totalAnswers;
@@ -12,7 +15,7 @@ public class UserProgress {
         totalAnswers++;
     }
 
-    public double getProgess() {
+    public double getProgress() {
         return totalAnswers == 0 ? 0 : (double) correctAnswers / totalAnswers * 100;
     }
 }

@@ -1,7 +1,7 @@
-package com.lingolearnhub.view;
+package com.og;
 
-import com.lingolearnhub.ProgressObserver;
-import com.lingolearnhub.entity.VocabularySet;
+import com.og.ProgressObserver;
+import com.og.VocabularySet;
 
 public class LearningView implements ProgressObserver {
     @Override

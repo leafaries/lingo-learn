@@ -1,4 +1,6 @@
-package com.lingolearnhub.entity;
+package com.og;
+
+import com.lingolearnhub.og.Word;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +14,11 @@ public class VocabularySet {
         this.words = new ArrayList<>();
     }
 
-    public void addWord(Word word) {
+    public void addWord(com.lingolearnhub.og.entity.Word word) {
         words.add(word);
     }
 
-    public List<Word> getWords() {
+    public List<com.lingolearnhub.og.entity.Word> getWords() {
         return words;
     }
 

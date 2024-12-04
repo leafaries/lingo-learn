@@ -1,8 +1,9 @@
-package com.lingolearnhub.strategy;
+package com.og;
 
-import com.lingolearnhub.view.LearningView;
-import com.lingolearnhub.entity.UserProgress;
-import com.lingolearnhub.entity.VocabularySet;
+import com.lingolearnhub.og.LearningStrategy;
+import com.lingolearnhub.og.LearningView;
+import com.lingolearnhub.og.entity.UserProgress;
+import com.lingolearnhub.og.entity.VocabularySet;
 
 import java.util.Scanner;
 
