@@ -1,10 +1,10 @@
 package com.lingolearnhub.learning.strategy;
 
 import com.lingolearnhub.learning.LearningView;
-import com.lingolearnhub.model.UserProgress;
-import com.lingolearnhub.model.VocabularyComponent;
-import com.lingolearnhub.model.VocabularySet;
-import com.lingolearnhub.model.Word;
+import com.lingolearnhub.progress.UserProgress;
+import com.lingolearnhub.vocabulary.VocabularyComponent;
+import com.lingolearnhub.vocabulary.VocabularySet;
+import com.lingolearnhub.vocabulary.Word;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,22 +18,22 @@ public class MultipleChoiceStrategy implements LearningStrategy {
         for (Word word : words) {
             // Prepare multiple choice options, including the correct one
             List<String> options = generateOptions(word, words);
-            learningView.displayChallenge("What is the translation of: " + word.getWord() + "? Choices: " + String.join(", ", options));
+            learningView.displayChallenge("What is the translation of: " + word.word() + "? Choices: " + String.join(", ", options));
 
             // Logic to process user input and check correctness (omitted for brevity)
         }
         // Update user progress after multiple choice session
-        userProgress.updateProgress(/* some logic to calculate progress */);
+//        userProgress.updateProgress(/* some logic to calculate progress */);
     }
 
     private List<String> generateOptions(Word correctWord, List<Word> allWords) {
         List<String> options = new ArrayList<>();
-        options.add(correctWord.getTranslation());
+        options.add(correctWord.translation());
 
         while (options.size() < 4) { // Assuming 4 options per question
             Word randomWord = allWords.get((int) (Math.random() * allWords.size()));
-            if (!options.contains(randomWord.getTranslation())) {
-                options.add(randomWord.getTranslation());
+            if (!options.contains(randomWord.translation())) {
+                options.add(randomWord.translation());
             }
         }
 

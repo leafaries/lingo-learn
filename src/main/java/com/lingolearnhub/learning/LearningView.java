@@ -1,8 +1,8 @@
 package com.lingolearnhub.learning;
 
-import com.lingolearnhub.model.UserProgress;
-import com.lingolearnhub.model.VocabularyComponent;
-import com.lingolearnhub.model.VocabularySet;
+import com.lingolearnhub.progress.UserProgress;
+import com.lingolearnhub.vocabulary.VocabularyComponent;
+import com.lingolearnhub.vocabulary.VocabularySet;
 
 public class LearningView {
     public void displayProgress(UserProgress progress) {

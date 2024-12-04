@@ -1,8 +1,8 @@
 package com.lingolearnhub.learning;
 
 import com.lingolearnhub.learning.strategy.LearningStrategy;
-import com.lingolearnhub.model.UserProgress;
-import com.lingolearnhub.model.VocabularySet;
+import com.lingolearnhub.progress.UserProgress;
+import com.lingolearnhub.vocabulary.VocabularySet;
 
 public class LearningController {
     private final LearningView view;
@@ -22,7 +22,7 @@ public class LearningController {
 
     public void startLearning() {
         view.displayVocabulary(vocabularySet);
-        strategy.applyStrategy(vocabularySet, view, progress);
+        strategy.applyLearning(vocabularySet, view, progress);
         view.displayProgress(progress); // Call to display progress directly
     }
 

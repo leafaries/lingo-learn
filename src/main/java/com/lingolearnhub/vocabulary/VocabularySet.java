@@ -1,4 +1,4 @@
-package com.lingolearnhub.model;
+package com.lingolearnhub.vocabulary;
 
 import java.util.ArrayList;
 import java.util.List;

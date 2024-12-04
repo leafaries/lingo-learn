@@ -1,4 +1,4 @@
-package com.lingolearnhub.model;
+package com.lingolearnhub.vocabulary;
 
 /**
  * Reprezentuje pojedyncze słowo i jego tłumaczenie.

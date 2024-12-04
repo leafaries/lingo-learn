@@ -1,6 +1,6 @@
 package com.lingolearnhub.report;
 
-import com.lingolearnhub.model.UserProgress;
+import com.lingolearnhub.progress.UserProgress;
 
 public class SimpleReportGenerator implements ReportGenerator {
     @Override

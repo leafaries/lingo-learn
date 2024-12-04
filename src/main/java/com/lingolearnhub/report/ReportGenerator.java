@@ -1,6 +1,6 @@
 package com.lingolearnhub.report;
 
-import com.lingolearnhub.model.UserProgress;
+import com.lingolearnhub.progress.UserProgress;
 
 public interface ReportGenerator {
     String generate(UserProgress progress);

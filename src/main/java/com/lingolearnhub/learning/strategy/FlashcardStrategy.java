@@ -1,10 +1,10 @@
 package com.lingolearnhub.learning.strategy;
 
 import com.lingolearnhub.learning.LearningView;
-import com.lingolearnhub.model.UserProgress;
-import com.lingolearnhub.model.VocabularyComponent;
-import com.lingolearnhub.model.VocabularySet;
-import com.lingolearnhub.model.Word;
+import com.lingolearnhub.progress.UserProgress;
+import com.lingolearnhub.vocabulary.VocabularyComponent;
+import com.lingolearnhub.vocabulary.VocabularySet;
+import com.lingolearnhub.vocabulary.Word;
 
 public class FlashcardStrategy implements LearningStrategy {
     @Override

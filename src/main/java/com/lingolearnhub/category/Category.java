@@ -1,6 +1,6 @@
 package com.lingolearnhub.category;
 
-import com.lingolearnhub.model.VocabularySet;
+import com.lingolearnhub.vocabulary.VocabularySet;
 
 import java.util.ArrayList;
 import java.util.List;
