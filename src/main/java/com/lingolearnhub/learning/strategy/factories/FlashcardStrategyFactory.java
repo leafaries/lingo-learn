@@ -13,6 +13,7 @@ import com.lingolearnhub.learning.strategy.LearningStrategy;
  * szczegółów instancjonowania obiektów FlashcardStrategy.
  */
 public class FlashcardStrategyFactory extends LearningStrategyFactory {
+
     /**
      * Tworzy i zwraca nową instancję FlashcardStrategy.
      */
@@ -20,4 +21,5 @@ public class FlashcardStrategyFactory extends LearningStrategyFactory {
     public LearningStrategy createStrategy() {
         return new FlashcardStrategy();
     }
+
 }

@@ -13,6 +13,7 @@ import com.lingolearnhub.learning.strategy.MultipleChoiceStrategy;
  * szczegółów instancjonowania obiektów MultipleChoiceStrategy.
  */
 public class MultipleChoiceStrategyFactory extends LearningStrategyFactory {
+
     /**
      * Tworzy i zwraca nową instancję MultipleChoiceStrategy.
      */
@@ -20,4 +21,5 @@ public class MultipleChoiceStrategyFactory extends LearningStrategyFactory {
     public LearningStrategy createStrategy() {
         return new MultipleChoiceStrategy();
     }
+
 }

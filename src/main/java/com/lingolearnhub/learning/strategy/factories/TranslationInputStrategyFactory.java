@@ -13,6 +13,7 @@ import com.lingolearnhub.learning.strategy.TranslationInputStrategy;
  * szczegółów instancjonowania obiektów TranslationInputStrategy.
  */
 public class TranslationInputStrategyFactory extends LearningStrategyFactory {
+
     /**
      * Tworzy i zwraca nową instancję TranslationInputStrategy.
      */
@@ -20,4 +21,5 @@ public class TranslationInputStrategyFactory extends LearningStrategyFactory {
     public LearningStrategy createStrategy() {
         return new TranslationInputStrategy();
     }
+
 }

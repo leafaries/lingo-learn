@@ -5,8 +5,9 @@ import com.lingolearnhub.progress.UserProgress;
 import com.lingolearnhub.vocabulary.VocabularySet;
 
 public class LearningController {
+
     private final LearningView view;
-    private UserProgress progress;
+    private final UserProgress progress;
     private VocabularySet vocabularySet;
     private LearningStrategy strategy;
 
@@ -29,4 +30,5 @@ public class LearningController {
     public void setVocabularySet(VocabularySet vocabularySet) {
         this.vocabularySet = vocabularySet;
     }
+
 }

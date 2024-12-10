@@ -7,6 +7,7 @@ import com.lingolearnhub.vocabulary.VocabularySet;
 import com.lingolearnhub.vocabulary.Word;
 
 public class TranslationInputStrategy implements LearningStrategy {
+
     @Override
     public void applyLearning(VocabularySet vocabularySet, LearningView learningView, UserProgress userProgress) {
         for (VocabularyComponent component : vocabularySet.getComponents()) {
@@ -27,4 +28,5 @@ public class TranslationInputStrategy implements LearningStrategy {
         // Optionally update or display user progress at the end
         learningView.displayProgress(userProgress);
     }
+
 }

@@ -1,6 +1,7 @@
 package com.lingolearnhub.progress;
 
 public class ChallengeStatistics {
+
     private int totalChallenges;
     private int completedChallenges;
     private double successRate;
@@ -15,4 +16,5 @@ public class ChallengeStatistics {
     public String toString() {
         return "Total: " + totalChallenges + ", Completed: " + completedChallenges + ", Success Rate: " + successRate + "%";
     }
+
 }

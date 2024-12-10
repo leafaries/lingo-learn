@@ -7,6 +7,7 @@ import com.lingolearnhub.vocabulary.VocabularySet;
 import com.lingolearnhub.vocabulary.Word;
 
 public class FlashcardStrategy implements LearningStrategy {
+
     @Override
     public void applyLearning(VocabularySet vocabularySet, LearningView learningView, UserProgress userProgress) {
         for (VocabularyComponent component : vocabularySet.getComponents()) {
@@ -20,4 +21,5 @@ public class FlashcardStrategy implements LearningStrategy {
         // Update user progress after flashcard session
         userProgress.updateProgress( /* some logic to calculate progress */);
     }
+
 }

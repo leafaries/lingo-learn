@@ -5,6 +5,7 @@ import com.lingolearnhub.vocabulary.VocabularyComponent;
 import com.lingolearnhub.vocabulary.VocabularySet;
 
 public class LearningView {
+
     public void displayProgress(UserProgress progress) {
         System.out.println("Your current progress: " + progress.getProgress() + "%");
     }
@@ -19,4 +20,5 @@ public class LearningView {
     public void displayChallenge(String challenge) {
         System.out.println("Challenge: " + challenge);
     }
+
 }

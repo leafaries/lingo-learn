@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChallengeInvoker {
+
     private List<ChallengeCommand> challengeHistory = new ArrayList<>();
 
     public void executeChallenge(ChallengeCommand challange) {
@@ -20,8 +21,8 @@ public static void main(String[] args) {
     ChallangeCommand puzzleChallenge = new PuzzleChallenge();
     ChallangeCommand taskChallenge = new TaskChallenge();
 
-    invoker.executeChallenge(quizChallenge); // Executes a quiz challenge
+    invoker.executeChallenge(quizChallenge);   // Executes a quiz challenge
     invoker.executeChallenge(puzzleChallenge); // Executes a puzzle challenge
-    invoker.executeChallenge(taskChallenge); // Executes a task challenge
+    invoker.executeChallenge(taskChallenge);   // Executes a task challenge
 }
  */

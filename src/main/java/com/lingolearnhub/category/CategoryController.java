@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryController {
-    private List<Category> categories = new ArrayList<>();
+
+    private final List<Category> categories = new ArrayList<>();
 
     public void addCategory(Category category) {
         categories.add(category);
@@ -17,4 +18,5 @@ public class CategoryController {
     public Category findCategoryByName(String name) {
         return categories.stream().filter(category -> category.getName().equals(name)).findFirst().orElse(null);
     }
+
 }

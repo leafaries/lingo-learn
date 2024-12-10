@@ -4,6 +4,7 @@ package com.lingolearnhub.progress;
  * Śledzi postępy użytkownika.
  */
 public class UserProgress { // FIXME: Clean from bad observer pattern
+
     private int correctAnswers;
     private int totalAnswers;
 //    private final List<ProgressObserver> observers = new ArrayList<>();
@@ -41,4 +42,5 @@ public class UserProgress { // FIXME: Clean from bad observer pattern
 //            observer.updateProgress(getProgress());
 //        }
 //    }
+
 }

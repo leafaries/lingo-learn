@@ -1,12 +1,13 @@
 package com.lingolearnhub.vocabulary;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Przechowuje zestaw słówek.
- */
+@Getter
 public class VocabularySet implements VocabularyComponent {
+
     private final String name;
     private final List<VocabularyComponent> components;
 
@@ -19,14 +20,6 @@ public class VocabularySet implements VocabularyComponent {
         components.add(word);
     }
 
-    public List<VocabularyComponent> getComponents() {
-        return components;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     @Override
     public void display() {
         System.out.println("Vocabulary Set: " + name);
@@ -34,4 +27,5 @@ public class VocabularySet implements VocabularyComponent {
             component.display();
         }
     }
+
 }

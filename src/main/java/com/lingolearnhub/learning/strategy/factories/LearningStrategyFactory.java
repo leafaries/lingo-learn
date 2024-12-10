@@ -14,5 +14,7 @@ import com.lingolearnhub.learning.strategy.LearningStrategy;
  * tworzenia strategii poprzez dziedziczenie.
  */
 public abstract class LearningStrategyFactory {
+
     public abstract LearningStrategy createStrategy();
+
 }

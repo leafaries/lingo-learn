@@ -1,6 +1,7 @@
 package com.lingolearnhub.config;
 
 public class ApplicationSettings {
+
     private static ApplicationSettings instance;
 
     private ApplicationSettings() {}
@@ -12,5 +13,4 @@ public class ApplicationSettings {
         return instance;
     }
 
-    // Metody ustawień
 }

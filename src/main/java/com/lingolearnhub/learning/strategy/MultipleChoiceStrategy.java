@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class MultipleChoiceStrategy implements LearningStrategy {
+
     @Override
     public void applyLearning(VocabularySet vocabularySet, LearningView learningView, UserProgress userProgress) {
         List<Word> words = extractWords(vocabularySet);
@@ -52,5 +53,6 @@ public class MultipleChoiceStrategy implements LearningStrategy {
 
         return words;
     }
+
 }
 

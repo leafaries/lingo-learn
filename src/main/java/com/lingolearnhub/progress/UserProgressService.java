@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserProgressService {
+
     // Example method to update progress after completing a challenge
     public void updateProgressAfterChallenge(String userId, String challengeId, boolean isCompleted) {
         if (isCompleted) {
@@ -27,4 +28,5 @@ public class UserProgressService {
         // This would be a query from a data source
         return Arrays.asList("Vocabulary Quiz", "Grammar Puzzle", "Conversation Task");
     }
+
 }
