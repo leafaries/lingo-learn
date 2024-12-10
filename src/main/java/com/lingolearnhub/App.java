@@ -19,6 +19,10 @@ public class App {
     //       - Update README.md
     //       - Specify what API EXACTLY this library will be sharing
     //       - Add tests as soon as you're sure you've specified some class
+    //       - Compete TODOs
+    //       - Investigate "Potential Over-Engineering" (1)
+    //       - Add proper error handling
+    //       - Unstube UserProgress
     //       Not that important at the beginning:
     //       - Add logging
     //       - Write documentation (JavaDocs and more)

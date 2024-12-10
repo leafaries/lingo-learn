@@ -19,9 +19,7 @@ public class UserProgressService {
         int totalChallenges = 10;  // Placeholder value
         int completedChallenges = 7;  // Placeholder value
 
-        double successRate = (double)completedChallenges / totalChallenges * 100;
-
-        return new ChallengeStatistics(totalChallenges, completedChallenges, successRate);
+        return new ChallengeStatistics(totalChallenges, completedChallenges);
     }
 
     public List<String> getDailyChallenges(String userId) {
