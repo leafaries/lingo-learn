@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.lingolearnhub</groupId>
-  <artifactId>lingo-learn-hub</artifactId>
+  <artifactId>lingo-learn</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -46,13 +46,26 @@
   </build>
 
   <dependencies>
+    <!-- Guava for immutable Collections -->
+<!--    <dependency>-->
+<!--      <groupId>com.google.guava</groupId>-->
+<!--      <artifactId>guava</artifactId>-->
+<!--      <version>33.4.0-jre</version>-->
+<!--    </dependency>-->
+
+    <!-- Jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.18.2</version>
+    </dependency>
+
     <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.36</version>
     </dependency>
-
 
     <!-- Logging -->
     <dependency>
