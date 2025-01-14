@@ -8,7 +8,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class VocabularySet implements LearningItem {
-    private final UUID id;
     private final Set<LearningItem> items;
     private final Instant createdAt;
 
@@ -18,17 +17,11 @@ public class VocabularySet implements LearningItem {
     private Instant lastModifiedAt;
 
     public VocabularySet(String name, String description) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.items = new HashSet<>();
         this.createdAt = Instant.now();
         this.lastModifiedAt = createdAt;
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
     }
 
     @Override

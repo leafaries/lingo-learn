@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Session {
-    private final UUID id;
     private final LearningItem learningItem;
     private final StudyMode mode;
     private final SessionType type;
@@ -21,17 +20,12 @@ public class Session {
     private SessionState state;
 
     public Session(LearningItem learningItem, StudyMode mode, SessionType type) {
-        this.id = UUID.randomUUID();
         this.learningItem = learningItem;
         this.mode = mode;
         this.type = type;
         this.startTime = Instant.now();
         this.answers = new ArrayList<>();
         this.state = SessionState.IN_PROGRESS;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public LearningItem getLearningItem() {

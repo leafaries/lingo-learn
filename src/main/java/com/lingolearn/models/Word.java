@@ -4,10 +4,8 @@ import com.lingolearn.enums.Difficulty;
 
 import java.time.Instant;
 import java.util.Set;
-import java.util.UUID;
 
 public class Word implements LearningItem {
-    private final UUID id;
     private final Instant createdAt;
 
     private String original;
@@ -16,17 +14,11 @@ public class Word implements LearningItem {
     private Instant lastModifiedAt;
 
     public Word(String original, String translation) {
-        this.id = UUID.randomUUID();
         this.createdAt = Instant.now();
         this.original = original;
         this.translation = translation;
         this.difficulty = Difficulty.MEDIUM;
         this.lastModifiedAt = createdAt;
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
     }
 
     @Override
@@ -45,8 +37,8 @@ public class Word implements LearningItem {
     }
 
     @Override
-    public Set<UUID> getAllWordIds() {
-        return Set.of(id);
+    public Set<Word> getAllWords() {
+        return Set.of(this);
     }
 
     public String getOriginal() {

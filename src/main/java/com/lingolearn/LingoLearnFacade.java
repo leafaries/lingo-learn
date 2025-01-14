@@ -1,58 +1,124 @@
 package com.lingolearn;
 
-import com.lingolearn.enums.SessionType;
-import com.lingolearn.enums.StudyMode;
+import com.lingolearn.models.Category;
 import com.lingolearn.models.VocabularySet;
 import com.lingolearn.models.Word;
 
+import java.nio.file.Path;
 import java.util.List;
-import java.util.UUID;
 
 /** Main facade interface that clients will interact with */
 public interface LingoLearnFacade {
-    // Sessions Operations
-    UUID startSession(SessionType type, StudyMode mode, UUID vocabularySetId);
-    void endSession(UUID sessionId);
-    SessionResult getCurrentSessionResult(UUID sessionId);
-    void submitAnswer(UUID sessionId, String answer);
-    Word getNextWord(UUID sessionId);
-    StudyProgress getProgress(UUID sessionId);
 
-    // Vocabulary Operations
-    UUID createVocabularySet(String name, String description);
-    void addWordToSet(UUID setId, UUID wordId);
-    void removeWordFromSet(UUID setId, UUID wordId);
-    void categorizeSet(UUID setId, UUID categoryId);
-    VocabularySet getVocabularySet(UUID setId);
-    List<VocabularySet> getAllVocabularySets();
+    VocabularyManager vocabulary();
+    StudyManager study();
+    ChallengeManager challenges();
+    StatisticsManager statistics();
+    DataManager data();
+    PreferencesManager preferences();
 
-    UUID createWord(String original, String translation);
-    void updateWord(UUID categoryId, String name);
-    void deleteCategory(UUID categoryId);
+    interface VocabularyManager {
+        SetManager sets();
+        WordManager words();
+        CategoryManager categories();
 
-    // Learning Operations
-    /* void submitAnswer(String answer);
-    Word getCurrentWord();
-    StudyProgress getProgress();
-    List<Word> getProblemWords(); */
+        interface SetManager {
+            VocabularySet create(String name, String description);
+            List<VocabularySet> getAll();
+            void update(VocabularySet set, String name, String description);
+            void addWords(VocabularySet set, List<Word> words);
+            void removeWords(VocabularySet set, List<Word> words);
+            void delete(VocabularySet set);
+        }
 
-    // Challenge and test management
-    /* void startDailyChallenge();
-    void startKnowledgeTest(VocabularySet set);
-    TestResult getTestResult(); */
+        interface WordManager {
+            Word create(String original, String translation);
+            List<Word> getAll();
+            void update(Word word, String original, String translation);
+            void delete(Word word);
+        }
 
-    // Statistics and reporting
-    /* Statistics getUserStatistics();
-    Report generateReport(ReportType type, LocalDate from, LocalDate to);
-    void resetStatistics(); */
+        interface CategoryManager {
+            Category create(String name);
+            List<Category> getAll();
+            void update(Category category, String name);
+            void assignToSet(Category category, VocabularySet set);
+            void removeFromSet(Category category, VocabularySet set);
+            void delete(Category category);
+        }
+    }
 
-    // Settings management
-    /* void updateSettings(Settings settings);
-    Settings getSettings();
-    void exportSettings(String filePath);
-    void importSettings(String filePath); */
+    interface StudyManager {
+        FlashcardMode flashcards();
+        TranslationMode translation();
+        ManualMode manual();
 
-    // Data management
-    /* void exportData(String filePath, ExportType type);
-    void importData(String filePath); */
+        interface Session {
+            Word getCurrentWord();
+            StudyProgress submitAnswer(String answer);
+            StudyResult complete();
+            void abandon();
+        }
+
+        interface FlashcardMode {
+            Session start(VocabularySet set);
+            PreferenceConfig getPreferences();
+            void updatePreferences(PreferenceConfig config);
+        }
+
+        interface TranslationMode {
+            Session start(VocabularySet set);
+            PreferenceConfig getPreferences();
+            void updatePreferences(PreferenceConfig config);
+        }
+
+        interface ManualMode {
+            Session start(VocabularySet set);
+            PreferenceConfig getPreferences();
+            void updatePreferences(PreferenceConfig config);
+        }
+    }
+
+    interface ChallengeManager {
+        DailyChallenge daily();
+        Review review();
+        Test test();
+
+        interface DailyChallenge {
+            Session start();
+            StudyProgress getProgress();
+            List<Challenge> getHistory();
+        }
+
+        interface Review {
+            Session startForProblematicWords();
+            List<Word> getProblematicWords();
+            StudyProgress getProgress();
+        }
+
+        interface Test {
+            Session start(VocabularySet set);
+            List<TestResult> getHistory();
+        }
+    }
+
+    interface StatisticsManager {
+        StudyStatistics getStudyStats();
+        void resetStats();
+        Report generateReport(ReportConfig config);
+    }
+
+    interface DataManager {
+        void exportData(Path destination);
+        void importData(Path source);
+        void exportSettings(Path destination);
+        void importSettings(Path source);
+    }
+
+    interface PreferencesManager {
+        PreferenceConfig getPreferences();
+        void updatePreferences(PreferenceConfig config);
+        KeyboardShortcuts getShortcuts();
+        void updateShortcuts(KeyboardShortcuts shortcuts);
+    }
 }
