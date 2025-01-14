@@ -1,4 +1,4 @@
-package com.lingolearn;
+package com.lingolearn.models;
 
 import java.util.UUID;
 

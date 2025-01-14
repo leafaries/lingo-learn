@@ -1,6 +1,7 @@
-package com.lingolearn;
+package com.lingolearn.core;
 
 import com.lingolearn.models.Category;
+import com.lingolearn.models.StudyProgress;
 import com.lingolearn.models.VocabularySet;
 import com.lingolearn.models.Word;
 
@@ -8,7 +9,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 /** Main facade interface that clients will interact with */
-public interface LingoLearnFacade {
+public interface LingoLearn {
 
     VocabularyManager vocabulary();
     StudyManager study();
@@ -118,7 +119,5 @@ public interface LingoLearnFacade {
     interface PreferencesManager {
         PreferenceConfig getPreferences();
         void updatePreferences(PreferenceConfig config);
-        KeyboardShortcuts getShortcuts();
-        void updateShortcuts(KeyboardShortcuts shortcuts);
     }
 }

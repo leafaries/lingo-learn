@@ -1,4 +1,4 @@
-package com.lingolearn;
+package com.lingolearn.models;
 
 public class StudyProgress {
     private final int wordsCompleted;
