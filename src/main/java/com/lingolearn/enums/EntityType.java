@@ -1,4 +1,4 @@
-package com.lingolearn;
+package com.lingolearn.enums;
 
 public enum EntityType {
     VOCABULARY_SET,

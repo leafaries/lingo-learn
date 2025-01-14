@@ -2,14 +2,16 @@ package com.lingolearn;
 
 import com.lingolearn.enums.SessionType;
 import com.lingolearn.enums.StudyMode;
+import com.lingolearn.models.VocabularySet;
 import com.lingolearn.models.Word;
 
+import java.util.List;
 import java.util.UUID;
 
 /** Main facade interface that clients will interact with */
 public interface LingoLearnFacade {
     // Sessions Operations
-    UUID startSession(SessionType type, StudyMode mode, VocabularySet vocabularySet);
+    UUID startSession(SessionType type, StudyMode mode, UUID vocabularySetId);
     void endSession(UUID sessionId);
     SessionResult getCurrentSessionResult(UUID sessionId);
     void submitAnswer(UUID sessionId, String answer);

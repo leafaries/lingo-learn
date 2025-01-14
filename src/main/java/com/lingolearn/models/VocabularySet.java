@@ -17,8 +17,8 @@ public class VocabularySet implements LearningItem {
     private UUID categoryId;
     private Instant lastModifiedAt;
 
-    public VocabularySet(UUID id, String name, String description) {
-        this.id = id;
+    public VocabularySet(String name, String description) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.items = new HashSet<>();

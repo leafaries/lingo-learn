@@ -1,7 +1,5 @@
 package com.lingolearn.models;
 
-import java.util.UUID;
-
 public class VocabularyBuilder {
     private final VocabularySet root;
 
@@ -11,18 +9,18 @@ public class VocabularyBuilder {
 
     public static VocabularyBuilder create(String name, String description) {
         return new VocabularyBuilder(
-                new VocabularySet(UUID.randomUUID(), name, description)
+                new VocabularySet(name, description)
         );
     }
 
     public VocabularyBuilder addWord(String original, String translation) {
-        Word word = new Word(UUID.randomUUID(), original, translation);
+        Word word = new Word(original, translation);
         root.addItem(word);
         return this;
     }
 
     public VocabularyBuilder addSet(String name, String description) {
-        VocabularySet set = new VocabularySet(UUID.randomUUID(), name, description);
+        VocabularySet set = new VocabularySet(name, description);
         root.addItem(set);
         return this;
     }

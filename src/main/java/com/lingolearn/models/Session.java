@@ -1,8 +1,8 @@
 package com.lingolearn.models;
 
+import com.lingolearn.enums.SessionState;
 import com.lingolearn.enums.SessionType;
 import com.lingolearn.enums.StudyMode;
-import org.mockito.stubbing.Answer;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ public class Session {
     private Instant endTime;
     private SessionState state;
 
-    public Session(UUID id, LearningItem learningItem, StudyMode mode, SessionType type) {
-        this.id = id;
+    public Session(LearningItem learningItem, StudyMode mode, SessionType type) {
+        this.id = UUID.randomUUID();
         this.learningItem = learningItem;
         this.mode = mode;
         this.type = type;

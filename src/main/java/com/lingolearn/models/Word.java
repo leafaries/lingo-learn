@@ -1,6 +1,9 @@
 package com.lingolearn.models;
 
+import com.lingolearn.enums.Difficulty;
+
 import java.time.Instant;
+import java.util.Set;
 import java.util.UUID;
 
 public class Word implements LearningItem {
@@ -12,8 +15,8 @@ public class Word implements LearningItem {
     private Difficulty difficulty;
     private Instant lastModifiedAt;
 
-    public Word(UUID id, String original, String translation) {
-        this.id = id;
+    public Word(String original, String translation) {
+        this.id = UUID.randomUUID();
         this.createdAt = Instant.now();
         this.original = original;
         this.translation = translation;
