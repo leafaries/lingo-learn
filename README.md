@@ -1,8 +1,6 @@
 # lingo-learn
 
-**Lingo-learn** is a Java library developed as a sample university project to test skills in design patterns.
-The project emphasizes creating reusable core functionality for language learning, which can easily be extended
-by adding custom user interface (UI) modules.
+**Lingo-learn-hub** is a Java core module developed as a sample university project to test skills in design patterns and modular software design. The project emphasizes creating reusable core functionality for language learning, which can easily be extended by adding custom user interface (UI) modules.
 
 ## Problem Description
 
@@ -53,35 +51,23 @@ Then, build the project using your preferred Java build tool (e.g., Maven or Gra
 
 ### Progress Tracking
 
-- Track accuracy per word
-- Identify difficult words
-- Monitor daily learning streaks
-- Generate detailed progress reports
+The core module is designed to handle the application's main functionality. Developers can fork the repository and create custom UI modules that connect to the core for language-learning features. Here's an example of how you might interact with the core module in Java:
 
-### Data Management
+```java
+import com.lingo.learn.core.LanguageTrainer;
 
-- Create and manage vocabulary sets
-- Organize words into categories
-- Import/export functionality
-- Automatic data backups
+public class Main {
+    public static void main(String[] args) {
+        LanguageTrainer trainer = new LanguageTrainer();
 
-## Architecture
+        // Example usage: Get the next exercise
+        System.out.println(trainer.getNextExercise());
 
-The library uses several design patterns to ensure extensibility and maintainability:
-
-- **Strategy Pattern**: For different learning modes
-- **Composite Pattern**: For vocabulary organization
-- **Factory Pattern**: For creating learning sessions
-
-### Data Persistence
-
-The library handles data persistence automatically using a file-based system. Data is stored in:
-
-```
-/data
-  ├── vocabulary.json
-  ├── progress.json
-  └── settings.json
+        // Additional functionalities like progress tracking and report generation
+        trainer.showProgress();
+        trainer.generateReport();
+    }
+}
 ```
 
 ## License
