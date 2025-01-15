@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Stores user preferences for the language learning application.
+ * Since this is a single-user application, there will typically be only one
+ * active preference record at a time.
+ */
 @Entity
 @Table(name = "preferences")
 public class PreferenceEntity {
@@ -15,6 +20,10 @@ public class PreferenceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Keyboard shortcuts mapping. Keys are action names, values are shortcut
+     * combinations.
+     */
     @ElementCollection
     @CollectionTable(
             name = "keyboard_shortcuts",
@@ -24,39 +33,60 @@ public class PreferenceEntity {
     @Column(name = "shortcut")
     private Map<String, String> keyboardShortcuts = new HashMap<>();
 
+    /**
+     * Default session type for study sessions.
+     */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SessionType defaultSessionType = SessionType.FLASHCARD;
 
+    /**
+     * Whether sound feedback is enabled.
+     */
     @Column(nullable = false)
     private boolean soundEnabled = true;
 
+    /**
+     * Whether dark mode is enabled.
+     */
     @Column(nullable = false)
     private boolean darkMode = false;
+
+    /**
+     * Default number of words per study session.
+     */
+    @Column(nullable = false)
+    private int defaultWordsPerSession = 20;
+
+    /**
+     * Time limit in minutes for study sessions. 0 means no limit.
+     */
+    @Column(nullable = false)
+    private int sessionTimeLimit = 0;
 
     @Column(nullable = false)
     private LocalDateTime lastModified = LocalDateTime.now();
 
-    // Default constructor
+    // Constructors
+
+    /**
+     * Default constructor required by JPA.
+     */
     public PreferenceEntity() {
     }
 
-    // Getters
+    // Getters and Setters
+
     public Long getId() {
         return id;
     }
 
-    // Setters
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Map<String, String> getKeyboardShortcuts() {
-        return new HashMap<>(keyboardShortcuts);  // Return a copy to prevent external modification
+        return new HashMap<>(keyboardShortcuts); // Return a copy to prevent external modification
     }
 
     public void setKeyboardShortcuts(Map<String, String> keyboardShortcuts) {
-        this.keyboardShortcuts = new HashMap<>(keyboardShortcuts);  // Store a copy
+        this.keyboardShortcuts = new HashMap<>(keyboardShortcuts);
         this.lastModified = LocalDateTime.now();
     }
 
@@ -87,31 +117,69 @@ public class PreferenceEntity {
         this.lastModified = LocalDateTime.now();
     }
 
+    public int getDefaultWordsPerSession() {
+        return defaultWordsPerSession;
+    }
+
+    public void setDefaultWordsPerSession(int defaultWordsPerSession) {
+        this.defaultWordsPerSession = defaultWordsPerSession;
+        this.lastModified = LocalDateTime.now();
+    }
+
+    public int getSessionTimeLimit() {
+        return sessionTimeLimit;
+    }
+
+    public void setSessionTimeLimit(int sessionTimeLimit) {
+        this.sessionTimeLimit = sessionTimeLimit;
+        this.lastModified = LocalDateTime.now();
+    }
+
     public LocalDateTime getLastModified() {
         return lastModified;
     }
 
-    public void setLastModified(LocalDateTime lastModified) {
-        this.lastModified = lastModified;
-    }
-
     // Utility methods
+
+    /**
+     * Adds or updates a keyboard shortcut.
+     */
     public void addKeyboardShortcut(String action, String shortcut) {
         this.keyboardShortcuts.put(action, shortcut);
         this.lastModified = LocalDateTime.now();
     }
 
+    /**
+     * Removes a keyboard shortcut.
+     */
     public void removeKeyboardShortcut(String action) {
         this.keyboardShortcuts.remove(action);
         this.lastModified = LocalDateTime.now();
     }
 
+    /**
+     * Clears all keyboard shortcuts.
+     */
     public void clearKeyboardShortcuts() {
         this.keyboardShortcuts.clear();
         this.lastModified = LocalDateTime.now();
     }
 
-    // Override methods for proper entity behavior
+    /**
+     * Resets all preferences to default values.
+     */
+    public void resetToDefaults() {
+        this.defaultSessionType = SessionType.FLASHCARD;
+        this.soundEnabled = true;
+        this.darkMode = false;
+        this.defaultWordsPerSession = 20;
+        this.sessionTimeLimit = 0;
+        this.keyboardShortcuts.clear();
+        this.lastModified = LocalDateTime.now();
+    }
+
+    // Override overrides
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,8 +200,9 @@ public class PreferenceEntity {
                 ", defaultSessionType=" + defaultSessionType +
                 ", soundEnabled=" + soundEnabled +
                 ", darkMode=" + darkMode +
-                ", lastModified=" + lastModified +
-                ", keyboardShortcuts=" + keyboardShortcuts +
+                ", defaultWordsPerSession=" + defaultWordsPerSession +
+                ", sessionTimeLimit=" + sessionTimeLimit +
+                ", shortcutsCount=" + keyboardShortcuts.size() +
                 '}';
     }
 }
