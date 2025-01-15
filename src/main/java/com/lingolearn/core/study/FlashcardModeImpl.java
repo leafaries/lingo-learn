@@ -2,7 +2,7 @@ package com.lingolearn.core.study;
 
 import com.lingolearn.core.LingoLearn;
 import com.lingolearn.dtos.VocabularySetDTO;
-import com.lingolearn.dtos.config.PreferenceConfigDTO;
+import com.lingolearn.dtos.config.PreferencesDTO;
 import com.lingolearn.entities.PreferenceEntity;
 import com.lingolearn.repos.PreferenceRepository;
 
@@ -19,20 +19,20 @@ class FlashcardModeImpl implements LingoLearn.StudyManager.FlashcardMode {
     }
 
     @Override
-    public PreferenceConfigDTO getPreferences() {
+    public PreferencesDTO getPreferences() {
         return preferenceRepository.findLatest()
                 .map(this::mapToConfig)
-                .orElse(new PreferenceConfigDTO());
+                .orElse(new PreferencesDTO());
     }
 
     @Override
-    public void updatePreferences(PreferenceConfigDTO config) {
+    public void updatePreferences(PreferencesDTO config) {
         PreferenceEntity entity = new PreferenceEntity();
         // Map config to entity
         preferenceRepository.save(entity);
     }
 
-    private PreferenceConfigDTO mapToConfig(PreferenceEntity entity) {
-        return new PreferenceConfigDTO(); // TODO: Implement mapping
+    private PreferencesDTO mapToConfig(PreferenceEntity entity) {
+        return new PreferencesDTO(); // TODO: Implement mapping
     }
 }

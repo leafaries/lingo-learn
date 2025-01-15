@@ -4,9 +4,9 @@ import com.lingolearn.dtos.CategoryDTO;
 import com.lingolearn.dtos.StudyResultDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.WordDTO;
-import com.lingolearn.dtos.challenge.ChallengeDTO;
+import com.lingolearn.dtos.challenge.DailyChallengeDTO;
 import com.lingolearn.dtos.challenge.TestResultDTO;
-import com.lingolearn.dtos.config.PreferenceConfigDTO;
+import com.lingolearn.dtos.config.PreferencesDTO;
 import com.lingolearn.dtos.statistics.ReportConfigDTO;
 import com.lingolearn.dtos.statistics.ReportDTO;
 import com.lingolearn.dtos.statistics.StudyStatisticsDTO;
@@ -121,7 +121,7 @@ public class LingoLearnApp {
             return new Session(lingoLearn.study().manual().start(set));
         }
 
-        public static PreferenceConfigDTO getPreferredMode(SessionType type) {
+        public static PreferencesDTO getPreferredMode(SessionType type) {
             switch (type) {
                 case FLASHCARD -> {
                     return lingoLearn.study().flashcards().getPreferences();
@@ -136,7 +136,7 @@ public class LingoLearnApp {
             }
         }
 
-        public static void setPreferredMode(SessionType type, PreferenceConfigDTO config) {
+        public static void setPreferredMode(SessionType type, PreferencesDTO config) {
             switch (type) {
                 case FLASHCARD -> lingoLearn.study().flashcards().updatePreferences(config);
                 case TRANSLATION_LOGIC -> lingoLearn.study().translation().updatePreferences(config);
@@ -181,7 +181,7 @@ public class LingoLearnApp {
             return lingoLearn.challenges().daily().getProgress();
         }
 
-        public static List<ChallengeDTO> getHistory() {
+        public static List<DailyChallengeDTO> getHistory() {
             return lingoLearn.challenges().daily().getHistory();
         }
 
@@ -285,40 +285,40 @@ public class LingoLearnApp {
 
     // ==== Preferences Management ====
     public static class PreferencesManager {
-        public static PreferenceConfigDTO getPreferences() {
+        public static PreferencesDTO getPreferences() {
             return lingoLearn.preferences().getPreferences();
         }
 
-        public static void updatePreferences(PreferenceConfigDTO config) {
+        public static void updatePreferences(PreferencesDTO config) {
             lingoLearn.preferences().updatePreferences(config);
         }
 
         public static void setKeyboardShortcuts(Map<String, String> shortcuts) {
-            PreferenceConfigDTO config = getPreferences();
+            PreferencesDTO config = getPreferences();
             config.setKeyboardShortcuts(shortcuts);
             updatePreferences(config);
         }
 
         public static void setDefaultSessionType(SessionType type) {
-            PreferenceConfigDTO config = getPreferences();
+            PreferencesDTO config = getPreferences();
             config.setDefaultSessionType(type);
             updatePreferences(config);
         }
 
         public static void setDefaultStudyMode(StudyMode mode) {
-            PreferenceConfigDTO config = getPreferences();
+            PreferencesDTO config = getPreferences();
             config.setDefaultStudyMode(mode);
             updatePreferences(config);
         }
 
         public static void setSoundEnabled(boolean enabled) {
-            PreferenceConfigDTO config = getPreferences();
+            PreferencesDTO config = getPreferences();
             config.setSoundEnabled(enabled);
             updatePreferences(config);
         }
 
         public static void setDarkMode(boolean enabled) {
-            PreferenceConfigDTO config = getPreferences();
+            PreferencesDTO config = getPreferences();
             config.setDarkMode(enabled);
             updatePreferences(config);
         }

@@ -1,6 +1,7 @@
 package com.lingolearn.dtos;
 
 import java.time.Instant;
+import java.util.Set;
 
 /*
  - Categories are referenced by sets
@@ -8,8 +9,9 @@ import java.time.Instant;
  - Required for category management operatioons
  */
 public record CategoryDTO(
-        Long id,
         String name,
+        String description,
+        Set<VocabularySetDTO> vocabularySets,
         Instant createdAt,
         Instant lastModifiedAt
 ) {

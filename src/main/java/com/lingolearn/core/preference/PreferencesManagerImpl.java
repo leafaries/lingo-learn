@@ -1,7 +1,7 @@
 package com.lingolearn.core.preference;
 
 import com.lingolearn.core.LingoLearn;
-import com.lingolearn.dtos.config.PreferenceConfigDTO;
+import com.lingolearn.dtos.config.PreferencesDTO;
 import com.lingolearn.entities.PreferenceEntity;
 import com.lingolearn.enums.SessionType;
 import com.lingolearn.repos.PreferenceRepository;
@@ -19,7 +19,7 @@ public class PreferencesManagerImpl implements LingoLearn.PreferencesManager {
     }
 
     @Override
-    public PreferenceConfigDTO getPreferences() {
+    public PreferencesDTO getPreferences() {
         Optional<PreferenceEntity> preferences = repository.findLatest();
 
         if (preferences.isEmpty()) {
@@ -31,7 +31,7 @@ public class PreferencesManagerImpl implements LingoLearn.PreferencesManager {
     }
 
     @Override
-    public void updatePreferences(PreferenceConfigDTO config) {
+    public void updatePreferences(PreferencesDTO config) {
         PreferenceEntity entity = repository.findLatest()
                 .orElse(new PreferenceEntity());
 
@@ -39,7 +39,7 @@ public class PreferencesManagerImpl implements LingoLearn.PreferencesManager {
         repository.save(entity);
     }
 
-    private PreferenceConfigDTO createDefaultPreferences() {
+    private PreferencesDTO createDefaultPreferences() {
         PreferenceEntity entity = new PreferenceEntity();
 
         // Set default keyboard shortcuts
@@ -62,8 +62,8 @@ public class PreferencesManagerImpl implements LingoLearn.PreferencesManager {
         return mapEntityToConfig(entity);
     }
 
-    private PreferenceConfigDTO mapEntityToConfig(PreferenceEntity entity) {
-        return PreferenceConfigDTO.builder()
+    private PreferencesDTO mapEntityToConfig(PreferenceEntity entity) {
+        return PreferencesDTO.builder()
                 .keyboardShortcuts(new HashMap<>(entity.getKeyboardShortcuts()))
                 .defaultSessionType(entity.getDefaultSessionType())
                 .soundEnabled(entity.isSoundEnabled())
@@ -71,7 +71,7 @@ public class PreferencesManagerImpl implements LingoLearn.PreferencesManager {
                 .build();
     }
 
-    private void updateEntityFromConfig(PreferenceEntity entity, PreferenceConfigDTO config) {
+    private void updateEntityFromConfig(PreferenceEntity entity, PreferencesDTO config) {
         // Update keyboard shortcuts
         if (config.getKeyboardShortcuts() != null) {
             entity.setKeyboardShortcuts(new HashMap<>(config.getKeyboardShortcuts()));

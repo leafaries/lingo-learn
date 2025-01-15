@@ -11,10 +11,10 @@ import java.time.Instant;
  - Words can be part of multiple sets
  */
 public record WordDTO(
-        Long id,
         String original,
         String translation,
         Difficulty difficulty,
+        String feedback,
         Instant createdAt,
         Instant lastModifiedAt
 ) implements LearningItemDTO {

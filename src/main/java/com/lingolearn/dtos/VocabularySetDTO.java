@@ -11,11 +11,11 @@ import java.util.List;
  - Other entities reference sets (e.g., categories contains sets)
  */
 public record VocabularySetDTO(
-        Long id,
         String name,
         String description,
         CategoryDTO category,
         List<LearningItemDTO> items,
+        double successRate,
         Instant createdAt,
         Instant lastModifiedAt
 ) implements LearningItemDTO {

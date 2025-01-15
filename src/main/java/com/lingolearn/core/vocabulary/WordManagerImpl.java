@@ -6,7 +6,6 @@ import com.lingolearn.entities.WordEntity;
 import com.lingolearn.repos.WordRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WordManagerImpl implements LingoLearn.VocabularyManager.WordManager {
     private final WordRepository wordRepository;
@@ -26,7 +25,7 @@ public class WordManagerImpl implements LingoLearn.VocabularyManager.WordManager
     public List<WordDTO> getAll() {
         return wordRepository.findAll().stream()
                 .map(this::mapToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

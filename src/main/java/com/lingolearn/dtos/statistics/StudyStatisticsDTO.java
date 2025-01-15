@@ -59,7 +59,7 @@ public record StudyStatisticsDTO(
         return accuracy;
     }
 
-    .Override
+    @Override
     public Duration getTotalTime() {
         return studyTime;
     }

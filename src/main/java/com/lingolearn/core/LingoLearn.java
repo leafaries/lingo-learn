@@ -4,9 +4,9 @@ import com.lingolearn.dtos.CategoryDTO;
 import com.lingolearn.dtos.StudyResultDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.WordDTO;
-import com.lingolearn.dtos.challenge.ChallengeDTO;
+import com.lingolearn.dtos.challenge.DailyChallengeDTO;
 import com.lingolearn.dtos.challenge.TestResultDTO;
-import com.lingolearn.dtos.config.PreferenceConfigDTO;
+import com.lingolearn.dtos.config.PreferencesDTO;
 import com.lingolearn.dtos.statistics.ReportConfigDTO;
 import com.lingolearn.dtos.statistics.ReportDTO;
 import com.lingolearn.dtos.statistics.StudyStatisticsDTO;
@@ -110,20 +110,20 @@ public interface LingoLearn {
 
         interface FlashcardMode {
             Session start(VocabularySetDTO set);
-            PreferenceConfigDTO getPreferences();
-            void updatePreferences(PreferenceConfigDTO config);
+            PreferencesDTO getPreferences();
+            void updatePreferences(PreferencesDTO config);
         }
 
         interface TranslationMode {
             Session start(VocabularySetDTO set);
-            PreferenceConfigDTO getPreferences();
-            void updatePreferences(PreferenceConfigDTO config);
+            PreferencesDTO getPreferences();
+            void updatePreferences(PreferencesDTO config);
         }
 
         interface ManualMode {
             Session start(VocabularySetDTO set);
-            PreferenceConfigDTO getPreferences();
-            void updatePreferences(PreferenceConfigDTO config);
+            PreferencesDTO getPreferences();
+            void updatePreferences(PreferencesDTO config);
         }
     }
 
@@ -135,7 +135,7 @@ public interface LingoLearn {
         interface DailyChallenge {
             StudyManager.Session start();
             StudyProgressDTO getProgress();
-            List<ChallengeDTO> getHistory();
+            List<DailyChallengeDTO> getHistory();
         }
 
         interface Review {
@@ -164,7 +164,7 @@ public interface LingoLearn {
     }
 
     interface PreferencesManager {
-        PreferenceConfigDTO getPreferences();
-        void updatePreferences(PreferenceConfigDTO config);
+        PreferencesDTO getPreferences();
+        void updatePreferences(PreferencesDTO config);
     }
 }
