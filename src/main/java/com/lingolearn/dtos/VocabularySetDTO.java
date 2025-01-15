@@ -5,7 +5,13 @@ import com.lingolearn.dtos.core.LearningItemDTO;
 import java.time.Instant;
 import java.util.List;
 
+/*
+ - Sets are referenced in study sessions and tests
+ - Used for CRUD operations through the facade
+ - Other entities reference sets (e.g., categories contains sets)
+ */
 public record VocabularySetDTO(
+        Long id,
         String name,
         String description,
         CategoryDTO category,

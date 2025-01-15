@@ -5,6 +5,10 @@ import com.lingolearn.dtos.core.StatisticsDTO;
 
 import java.time.Duration;
 
+/*
+ - Represent transient state
+ - Referenced through their parent sessions if needed
+ */
 public record StudyProgressDTO(
         WordDTO currentWord,
         boolean isCorrect,

@@ -22,7 +22,6 @@ import java.util.Random;
 
 abstract class BaseStudySession implements LingoLearn.StudyManager.Session {
     protected final SessionEntity session;
-    protected final List<WordEntity> words;
     protected final SessionRepository sessionRepository;
     protected final AnswerRepository answerRepository;
     protected int currentWordIndex;

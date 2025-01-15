@@ -10,6 +10,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+/*
+ - Generated on demand
+ - Represent agreggated data
+ - Not stored or referenced directly
+ */
 public record ReportDTO(
         Instant generatedAt,
         ReportConfigDTO config,

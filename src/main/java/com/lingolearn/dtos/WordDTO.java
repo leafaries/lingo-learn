@@ -5,7 +5,13 @@ import com.lingolearn.enums.Difficulty;
 
 import java.time.Instant;
 
+/*
+ - Words are referenced in answers and statistics
+ - Used for CRUD operations
+ - Words can be part of multiple sets
+ */
 public record WordDTO(
+        Long id,
         String original,
         String translation,
         Difficulty difficulty,

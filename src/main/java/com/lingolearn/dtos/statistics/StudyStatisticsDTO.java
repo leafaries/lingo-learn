@@ -5,6 +5,11 @@ import com.lingolearn.dtos.core.StatisticsDTO;
 import java.time.Duration;
 import java.time.LocalDate;
 
+/*
+ - Generated on demand
+ - Represent agreggated data
+ - Not stored or referenced directly
+ */
 public record StudyStatisticsDTO(
         int wordsLearned,
         int correctAnswers,

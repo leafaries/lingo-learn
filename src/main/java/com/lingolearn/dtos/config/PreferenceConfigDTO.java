@@ -5,6 +5,11 @@ import com.lingolearn.enums.SessionType;
 import java.time.Duration;
 import java.util.Map;
 
+/*
+ - Represents current configuration state
+ - No need for historical tracking
+ - Single instance per user
+ */
 public record PreferenceConfigDTO(
         SessionType defaultSessionType,
         Map<String, String> keyboardShortcuts,
