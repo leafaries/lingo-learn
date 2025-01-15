@@ -1,8 +1,16 @@
 package com.lingolearn.core;
 
 import com.lingolearn.dtos.CategoryDTO;
+import com.lingolearn.dtos.StudyResultDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.WordDTO;
+import com.lingolearn.dtos.challenge.ChallengeDTO;
+import com.lingolearn.dtos.challenge.TestResultDTO;
+import com.lingolearn.dtos.config.PreferenceConfigDTO;
+import com.lingolearn.dtos.statistics.ReportConfigDTO;
+import com.lingolearn.dtos.statistics.ReportDTO;
+import com.lingolearn.dtos.statistics.StudyStatisticsDTO;
+import com.lingolearn.dtos.study.StudyProgressDTO;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -13,7 +21,6 @@ import java.util.List;
  * of concerns. However, this makes it verbose for common use cases.
  */
 public interface LingoLearn {
-
     VocabularyManager vocabulary();
     StudyManager study();
     ChallengeManager challenges();
@@ -59,27 +66,27 @@ public interface LingoLearn {
 
         interface Session {
             WordDTO getCurrentWord();
-            StudyProgress submitAnswer(String answer);
-            StudyResult complete();
+            StudyProgressDTO submitAnswer(String answer);
+            StudyResultDTO complete();
             void abandon();
         }
 
         interface FlashcardMode {
             Session start(VocabularySetDTO set);
-            PreferenceConfig getPreferences();
-            void updatePreferences(PreferenceConfig config);
+            PreferenceConfigDTO getPreferences();
+            void updatePreferences(PreferenceConfigDTO config);
         }
 
         interface TranslationMode {
             Session start(VocabularySetDTO set);
-            PreferenceConfig getPreferences();
-            void updatePreferences(PreferenceConfig config);
+            PreferenceConfigDTO getPreferences();
+            void updatePreferences(PreferenceConfigDTO config);
         }
 
         interface ManualMode {
             Session start(VocabularySetDTO set);
-            PreferenceConfig getPreferences();
-            void updatePreferences(PreferenceConfig config);
+            PreferenceConfigDTO getPreferences();
+            void updatePreferences(PreferenceConfigDTO config);
         }
     }
 
@@ -89,27 +96,27 @@ public interface LingoLearn {
         Test test();
 
         interface DailyChallenge {
-            Session start();
-            StudyProgress getProgress();
-            List<Challenge> getHistory();
+            StudyManager.Session start();
+            StudyProgressDTO getProgress();
+            List<ChallengeDTO> getHistory();
         }
 
         interface Review {
-            Session startForProblematicWords();
+            StudyManager.Session startForProblematicWords();
             List<WordDTO> getProblematicWords();
-            StudyProgress getProgress();
+            StudyProgressDTO getProgress();
         }
 
         interface Test {
-            Session start(VocabularySetDTO set);
-            List<TestResult> getHistory();
+            StudyManager.Session start(VocabularySetDTO set);
+            List<TestResultDTO> getHistory();
         }
     }
 
     interface StatisticsManager {
-        StudyStatistics getStudyStats();
+        StudyStatisticsDTO getStudyStats();
         void resetStats();
-        Report generateReport(ReportConfig config);
+        ReportDTO generateReport(ReportConfigDTO config);
     }
 
     interface DataManager {
@@ -120,7 +127,7 @@ public interface LingoLearn {
     }
 
     interface PreferencesManager {
-        PreferenceConfig getPreferences();
-        void updatePreferences(PreferenceConfig config);
+        PreferenceConfigDTO getPreferences();
+        void updatePreferences(PreferenceConfigDTO config);
     }
 }
