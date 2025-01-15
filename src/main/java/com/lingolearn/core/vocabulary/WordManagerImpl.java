@@ -1,28 +1,28 @@
 package com.lingolearn.core.vocabulary;
 
 import com.lingolearn.core.LingoLearn;
-import com.lingolearn.models.Word;
+import com.lingolearn.dtos.WordDTO;
 
 import java.util.List;
 
 public class WordManagerImpl implements LingoLearn.VocabularyManager.WordManager {
     @Override
-    public Word create(String original, String translation) {
+    public WordDTO create(String original, String translation) {
         return null;
     }
 
     @Override
-    public List<Word> getAll() {
+    public List<WordDTO> getAll() {
         return List.of();
     }
 
     @Override
-    public void update(Word word, String original, String translation) {
+    public void update(WordDTO word, String original, String translation) {
 
     }
 
     @Override
-    public void delete(Word word) {
+    public void delete(WordDTO word) {
 
     }
 }

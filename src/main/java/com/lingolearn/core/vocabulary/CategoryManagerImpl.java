@@ -1,6 +1,7 @@
 package com.lingolearn.core.vocabulary;
 
 import com.lingolearn.core.LingoLearn;
+import com.lingolearn.dtos.CategoryDTO;
 import com.lingolearn.models.Category;
 import com.lingolearn.models.VocabularySet;
 
@@ -8,17 +9,17 @@ import java.util.List;
 
 public class CategoryManagerImpl implements LingoLearn.VocabularyManager.CategoryManager {
     @Override
-    public Category create(String name) {
+    public CategoryDTO create(String name) {
         return null;
     }
 
     @Override
-    public List<Category> getAll() {
+    public List<CategoryDTO> getAll() {
         return List.of();
     }
 
     @Override
-    public void update(Category category, String name) {
+    public void update(CategoryDTO category, String name) {
 
     }
 

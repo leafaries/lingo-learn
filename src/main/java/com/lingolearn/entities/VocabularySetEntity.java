@@ -56,4 +56,32 @@ public class VocabularySetEntity {
         word.getVocabularySets().remove(this);
         this.lastModifiedAt = LocalDateTime.now();
     }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getLastModifiedAt() {
+        return lastModifiedAt;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Set<WordEntity> getWords() {
+        return words;
+    }
 }

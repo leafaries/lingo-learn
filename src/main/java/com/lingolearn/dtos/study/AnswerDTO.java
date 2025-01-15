@@ -1,13 +1,16 @@
-package com.lingolearn.dtos;
+package com.lingolearn.dtos.study;
+
+import com.lingolearn.dtos.WordDTO;
 
 import java.time.Duration;
 import java.time.Instant;
 
-public record SessionDTO(
+public record AnswerDTO(
         WordDTO word,
-        String userInput,
+        String userAnswer,
         boolean correct,
         Duration responseTime,
         Instant timestamp
 ) {
+
 }

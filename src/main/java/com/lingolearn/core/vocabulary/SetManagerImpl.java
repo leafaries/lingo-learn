@@ -1,39 +1,79 @@
 package com.lingolearn.core.vocabulary;
 
 import com.lingolearn.core.LingoLearn;
-import com.lingolearn.models.VocabularySet;
-import com.lingolearn.models.Word;
+import com.lingolearn.dtos.VocabularySetDTO;
+import com.lingolearn.dtos.WordDTO;
+import com.lingolearn.entities.VocabularySetEntity;
+import com.lingolearn.entities.WordEntity;
+import com.lingolearn.repo.VocabularySetRepository;
+import com.lingolearn.repo.WordRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SetManagerImpl implements LingoLearn.VocabularyManager.SetManager {
-    @Override
-    public VocabularySet create(String name, String description) {
-        return null;
+    private final VocabularySetRepository repository;
+    private final WordRepository wordRepository;
+
+    public SetManagerImpl() {
+        this.repository = new VocabularySetRepository();
+        this.wordRepository = new WordRepository();
     }
 
     @Override
-    public List<VocabularySet> getAll() {
+    public VocabularySetDTO create(String name, String description) {
+        VocabularySetEntity entity = new VocabularySetEntity(name, description);
+        entity = repository.save(entity);
+        return mapToModel(entity);
+    }
+
+    @Override
+    public List<VocabularySetDTO> getAll() {
         return List.of();
     }
 
     @Override
-    public void update(VocabularySet set, String name, String description) {
+    public void update(VocabularySetDTO set, String name, String description) {
 
     }
 
     @Override
-    public void addWords(VocabularySet set, List<Word> words) {
+    public void addWords(VocabularySetDTO set, List<WordDTO> words) {
 
     }
 
     @Override
-    public void removeWords(VocabularySet set, List<Word> words) {
+    public void removeWords(VocabularySetDTO set, List<WordDTO> words) {
 
     }
 
     @Override
-    public void delete(VocabularySet set) {
+    public void delete(VocabularySetDTO set) {
 
+    }
+
+    private VocabularySetDTO mapToDTO(VocabularySetEntity entity) {
+        return new VocabularySetDTO(
+                entity.getId(),
+                entity.getName(),
+                entity.getDescription(),
+                null, // category will be mapped when implemented
+                entity.getWords().stream()
+                        .map(this::mapWordToDTO)
+                        .collect(Collectors.toList()),
+                entity.getCreatedAt().toInstant(),
+                entity.getLastModifiedAt().toInstant()
+        );
+    }
+
+    private WordDTO mapWordToDTO(WordEntity entity) {
+        return new WordDTO(
+                entity.getId(),
+                entity.getOriginal(),
+                entity.getTranslation(),
+                entity.getDifficulty(),
+                entity.getCreatedAt().toInstant(),
+                entity.getLastModifiedAt().toInstant()
+        );
     }
 }

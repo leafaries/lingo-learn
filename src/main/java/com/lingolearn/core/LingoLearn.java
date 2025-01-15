@@ -1,14 +1,17 @@
 package com.lingolearn.core;
 
-import com.lingolearn.models.Category;
-import com.lingolearn.models.StudyProgress;
-import com.lingolearn.models.VocabularySet;
-import com.lingolearn.models.Word;
+import com.lingolearn.dtos.CategoryDTO;
+import com.lingolearn.dtos.VocabularySetDTO;
+import com.lingolearn.dtos.WordDTO;
 
 import java.nio.file.Path;
 import java.util.List;
 
-/** Main facade interface that clients will interact with */
+/**
+ * The main LingoLearn facade is designed for flexibility and completeness.
+ * It exposes all possible operations and maintains a clean separation
+ * of concerns. However, this makes it verbose for common use cases.
+ */
 public interface LingoLearn {
 
     VocabularyManager vocabulary();
@@ -24,28 +27,28 @@ public interface LingoLearn {
         CategoryManager categories();
 
         interface SetManager {
-            VocabularySet create(String name, String description);
-            List<VocabularySet> getAll();
-            void update(VocabularySet set, String name, String description);
-            void addWords(VocabularySet set, List<Word> words);
-            void removeWords(VocabularySet set, List<Word> words);
-            void delete(VocabularySet set);
+            VocabularySetDTO create(String name, String description);
+            List<VocabularySetDTO> getAll();
+            void update(VocabularySetDTO set, String name, String description);
+            void addWords(VocabularySetDTO set, List<WordDTO> words);
+            void removeWords(VocabularySetDTO set, List<WordDTO> words);
+            void delete(VocabularySetDTO set);
         }
 
         interface WordManager {
-            Word create(String original, String translation);
-            List<Word> getAll();
-            void update(Word word, String original, String translation);
-            void delete(Word word);
+            WordDTO create(String original, String translation);
+            List<WordDTO> getAll();
+            void update(WordDTO word, String original, String translation);
+            void delete(WordDTO word);
         }
 
         interface CategoryManager {
-            Category create(String name);
-            List<Category> getAll();
-            void update(Category category, String name);
-            void assignToSet(Category category, VocabularySet set);
-            void removeFromSet(Category category, VocabularySet set);
-            void delete(Category category);
+            CategoryDTO create(String name);
+            List<CategoryDTO> getAll();
+            void update(CategoryDTO category, String name);
+            void assignToSet(CategoryDTO category, VocabularySetDTO set);
+            void removeFromSet(CategoryDTO category, VocabularySetDTO set);
+            void delete(CategoryDTO category);
         }
     }
 
@@ -55,26 +58,26 @@ public interface LingoLearn {
         ManualMode manual();
 
         interface Session {
-            Word getCurrentWord();
+            WordDTO getCurrentWord();
             StudyProgress submitAnswer(String answer);
             StudyResult complete();
             void abandon();
         }
 
         interface FlashcardMode {
-            Session start(VocabularySet set);
+            Session start(VocabularySetDTO set);
             PreferenceConfig getPreferences();
             void updatePreferences(PreferenceConfig config);
         }
 
         interface TranslationMode {
-            Session start(VocabularySet set);
+            Session start(VocabularySetDTO set);
             PreferenceConfig getPreferences();
             void updatePreferences(PreferenceConfig config);
         }
 
         interface ManualMode {
-            Session start(VocabularySet set);
+            Session start(VocabularySetDTO set);
             PreferenceConfig getPreferences();
             void updatePreferences(PreferenceConfig config);
         }
@@ -93,12 +96,12 @@ public interface LingoLearn {
 
         interface Review {
             Session startForProblematicWords();
-            List<Word> getProblematicWords();
+            List<WordDTO> getProblematicWords();
             StudyProgress getProgress();
         }
 
         interface Test {
-            Session start(VocabularySet set);
+            Session start(VocabularySetDTO set);
             List<TestResult> getHistory();
         }
     }

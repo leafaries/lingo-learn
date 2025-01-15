@@ -1,4 +1,7 @@
-package com.lingolearn.dtos;
+package com.lingolearn.dtos.core;
+
+import com.lingolearn.dtos.VocabularySetDTO;
+import com.lingolearn.dtos.WordDTO;
 
 import java.time.Instant;
 

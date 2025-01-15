@@ -1,5 +1,6 @@
 package com.lingolearn.dtos;
 
+import com.lingolearn.dtos.core.LearningItemDTO;
 import com.lingolearn.enums.Difficulty;
 
 import java.time.Instant;

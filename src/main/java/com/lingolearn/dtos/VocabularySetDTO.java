@@ -1,6 +1,6 @@
 package com.lingolearn.dtos;
 
-import com.lingolearn.models.Category;
+import com.lingolearn.dtos.core.LearningItemDTO;
 
 import java.time.Instant;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public record VocabularySetDTO(
         String name,
         String description,
-        Category category,
+        CategoryDTO category,
         List<LearningItemDTO> items,
         Instant createdAt,
         Instant lastModifiedAt
