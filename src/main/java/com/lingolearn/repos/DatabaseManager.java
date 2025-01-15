@@ -1,4 +1,4 @@
-package com.lingolearn.repo;
+package com.lingolearn.repos;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

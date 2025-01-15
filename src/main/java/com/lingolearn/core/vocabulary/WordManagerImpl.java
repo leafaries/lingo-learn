@@ -3,7 +3,7 @@ package com.lingolearn.core.vocabulary;
 import com.lingolearn.core.LingoLearn;
 import com.lingolearn.dtos.WordDTO;
 import com.lingolearn.entities.WordEntity;
-import com.lingolearn.repo.WordRepository;
+import com.lingolearn.repos.WordRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

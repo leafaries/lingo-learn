@@ -11,9 +11,9 @@ import com.lingolearn.entities.VocabularySetEntity;
 import com.lingolearn.entities.WordEntity;
 import com.lingolearn.enums.SessionType;
 import com.lingolearn.enums.StudyMode;
-import com.lingolearn.repo.AnswerRepository;
-import com.lingolearn.repo.SessionRepository;
-import com.lingolearn.repo.VocabularySetRepository;
+import com.lingolearn.repos.AnswerRepository;
+import com.lingolearn.repos.SessionRepository;
+import com.lingolearn.repos.VocabularySetRepository;
 
 import java.time.Duration;
 import java.util.ArrayList;

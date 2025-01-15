@@ -1,4 +1,4 @@
-package com.lingolearn.repo;
+package com.lingolearn.repos;
 
 import com.lingolearn.entities.CategoryEntity;
 import com.lingolearn.entities.VocabularySetEntity;

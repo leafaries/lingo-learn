@@ -33,7 +33,77 @@ public class StatisticsEntity {
     @Column(nullable = false)
     private int streakDays = 0;
 
-    // Getters and setters
+    // Default constructor
+    public StatisticsEntity() {
+    }
+
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public int getTotalWordsLearned() {
+        return totalWordsLearned;
+    }
+
+    public void setTotalWordsLearned(int totalWordsLearned) {
+        this.totalWordsLearned = totalWordsLearned;
+    }
+
+    public int getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public void setCorrectAnswers(int correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    public int getTotalAnswers() {
+        return totalAnswers;
+    }
+
+    public void setTotalAnswers(int totalAnswers) {
+        this.totalAnswers = totalAnswers;
+    }
+
+    public Duration getTotalStudyTime() {
+        return totalStudyTime;
+    }
+
+    public void setTotalStudyTime(Duration totalStudyTime) {
+        this.totalStudyTime = totalStudyTime;
+    }
+
+    public int getDailyChallengesCompleted() {
+        return dailyChallengesCompleted;
+    }
+
+    public void setDailyChallengesCompleted(int dailyChallengesCompleted) {
+        this.dailyChallengesCompleted = dailyChallengesCompleted;
+    }
+
+    public int getStreakDays() {
+        return streakDays;
+    }
+
+    public void setStreakDays(int streakDays) {
+        this.streakDays = streakDays;
+    }
+
+    // Utility methods
     public void incrementWordsLearned() {
         this.totalWordsLearned++;
     }
@@ -59,5 +129,37 @@ public class StatisticsEntity {
         } else {
             this.streakDays = 0;
         }
+    }
+
+    // Calculate accuracy percentage
+    public double getAccuracyPercentage() {
+        if (totalAnswers == 0) {
+            return 0.0;
+        }
+        return (double) correctAnswers / totalAnswers * 100.0;
+    }
+
+    // Reset statistics
+    public void reset() {
+        this.totalWordsLearned = 0;
+        this.correctAnswers = 0;
+        this.totalAnswers = 0;
+        this.totalStudyTime = Duration.ZERO;
+        this.dailyChallengesCompleted = 0;
+        this.streakDays = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "StatisticsEntity{" +
+                "id=" + id +
+                ", date=" + date +
+                ", totalWordsLearned=" + totalWordsLearned +
+                ", correctAnswers=" + correctAnswers +
+                ", totalAnswers=" + totalAnswers +
+                ", totalStudyTime=" + totalStudyTime +
+                ", dailyChallengesCompleted=" + dailyChallengesCompleted +
+                ", streakDays=" + streakDays +
+                '}';
     }
 }

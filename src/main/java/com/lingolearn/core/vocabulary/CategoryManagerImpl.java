@@ -5,8 +5,8 @@ import com.lingolearn.dtos.CategoryDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.entities.CategoryEntity;
 import com.lingolearn.entities.VocabularySetEntity;
-import com.lingolearn.repo.CategoryRepository;
-import com.lingolearn.repo.VocabularySetRepository;
+import com.lingolearn.repos.CategoryRepository;
+import com.lingolearn.repos.VocabularySetRepository;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package com.lingolearn.core;
 
 /** Helper record for creating word pairs */
-record WordPair(
+public record WordPair(
         String original,
         String translation
 ) {

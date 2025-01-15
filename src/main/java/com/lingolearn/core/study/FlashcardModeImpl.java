@@ -4,7 +4,7 @@ import com.lingolearn.core.LingoLearn;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.config.PreferenceConfigDTO;
 import com.lingolearn.entities.PreferenceEntity;
-import com.lingolearn.repo.PreferenceRepository;
+import com.lingolearn.repos.PreferenceRepository;
 
 class FlashcardModeImpl implements LingoLearn.StudyManager.FlashcardMode {
     private final PreferenceRepository preferenceRepository;

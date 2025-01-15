@@ -1,8 +1,12 @@
 package com.lingolearn;
 
 import com.lingolearn.core.LingoLearnApp;
+import com.lingolearn.dtos.StudyResultDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.WordDTO;
+import com.lingolearn.dtos.study.StudyProgressDTO;
+
+import java.nio.file.Path;
 
 public class App {
     public static void main(String[] args) {
@@ -20,8 +24,8 @@ public class App {
 
         // Study loop
         WordDTO word = session.getCurrentWord();
-        StudyProgress progress = session.submitAnswer("hola");
-        StudyResult result = session.complete();
+        StudyProgressDTO progress = session.submitAnswer("hola");
+        StudyResultDTO result = session.complete();
 
         // Start daily challenge
         LingoLearnApp.LearningSession.Session dailyChallenge = LingoLearnApp.DailyChallenges
@@ -36,8 +40,8 @@ public class App {
                 .startTest(travelSet);
 
         // Generate report
-        Report report = LingoLearnApp.Progress
-                .generateReport(new ReportConfig(/* config params */));
+//        ReportDTO report = LingoLearnApp.Progress
+//                .generateReport(new ReportConfigDTO());
 
         // Export data
         LingoLearnApp.DataManagement

@@ -7,8 +7,8 @@ import com.lingolearn.dtos.WordDTO;
 import com.lingolearn.entities.CategoryEntity;
 import com.lingolearn.entities.VocabularySetEntity;
 import com.lingolearn.entities.WordEntity;
-import com.lingolearn.repo.VocabularySetRepository;
-import com.lingolearn.repo.WordRepository;
+import com.lingolearn.repos.VocabularySetRepository;
+import com.lingolearn.repos.WordRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
