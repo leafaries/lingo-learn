@@ -52,6 +52,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.6.4.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.2.Final</version>
+        </dependency>
 
         <!-- H2 -->
         <dependency>
