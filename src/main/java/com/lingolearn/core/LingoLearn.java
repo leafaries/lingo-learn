@@ -110,21 +110,18 @@ public interface LingoLearn {
 
         interface FlashcardMode {
             Session start(VocabularySetDTO set);
-            PreferencesDTO getPreferences();
-            void updatePreferences(PreferencesDTO config);
         }
 
         interface TranslationMode {
             Session start(VocabularySetDTO set);
-            PreferencesDTO getPreferences();
-            void updatePreferences(PreferencesDTO config);
         }
 
         interface ManualMode {
             Session start(VocabularySetDTO set);
-            PreferencesDTO getPreferences();
-            void updatePreferences(PreferencesDTO config);
         }
+
+//        PreferencesDTO getPreferences();
+//        void updatePreferences(PreferencesDTO config);
     }
 
     interface ChallengeManager {

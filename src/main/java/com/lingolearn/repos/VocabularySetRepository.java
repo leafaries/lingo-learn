@@ -5,6 +5,7 @@ import com.lingolearn.entities.VocabularySetEntity;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
+import java.util.Optional;
 
 public class VocabularySetRepository extends BaseRepository<VocabularySetEntity, Long> {
     public VocabularySetRepository() {
@@ -12,28 +13,23 @@ public class VocabularySetRepository extends BaseRepository<VocabularySetEntity,
     }
 
     public List<VocabularySetEntity> findByCategory(CategoryEntity category) {
-        EntityManager em = dbManager.createEntityManager();
-        try {
+        try (EntityManager em = dbManager.createEntityManager()) {
             return em.createQuery(
                             "SELECT v FROM VocabularySetEntity v WHERE v.category = :category",
                             VocabularySetEntity.class)
                     .setParameter("category", category)
                     .getResultList();
-        } finally {
-            em.close();
         }
     }
 
-    public List<VocabularySetEntity> findByName(String name) {
-        EntityManager em = dbManager.createEntityManager();
-        try {
-            return em.createQuery(
+    public Optional<VocabularySetEntity> findByName(String name) {
+        try (EntityManager em = dbManager.createEntityManager()) {
+            List<VocabularySetEntity> results = em.createQuery(
                             "SELECT v FROM VocabularySetEntity v WHERE LOWER(v.name) LIKE LOWER(:name)",
                             VocabularySetEntity.class)
                     .setParameter("name", "%" + name + "%")
                     .getResultList();
-        } finally {
-            em.close();
+            return results.isEmpty() ? Optional.empty() : Optional.of(results.getFirst());
         }
     }
 }

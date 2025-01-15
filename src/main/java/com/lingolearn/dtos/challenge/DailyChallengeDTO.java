@@ -1,6 +1,10 @@
 package com.lingolearn.dtos.challenge;
 
+import com.lingolearn.dtos.SessionDTO;
+import com.lingolearn.enums.SessionType;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public record DailyChallengeDTO(
         SessionDTO session,

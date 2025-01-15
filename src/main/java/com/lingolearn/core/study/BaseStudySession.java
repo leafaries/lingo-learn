@@ -17,6 +17,7 @@ import com.lingolearn.repos.VocabularySetRepository;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -31,14 +32,14 @@ abstract class BaseStudySession implements LingoLearn.StudyManager.Session {
         this.answerRepository = new AnswerRepository();
 
         VocabularySetRepository setRepo = new VocabularySetRepository();
-        VocabularySetEntity setEntity = setRepo.findById(set.id())
+        VocabularySetEntity setEntity = setRepo.findByName(set.name())
                 .orElseThrow(() -> new IllegalArgumentException("Set not found"));
 
         this.words = new ArrayList<>(setEntity.getWords());
         this.currentWordIndex = 0;
 
         // Shuffle words for randomized learning
-        java.util.Collections.shuffle(this.words, new Random());
+        Collections.shuffle(this.words, new Random());
 
         this.session = new SessionEntity(setEntity, mode, type);
         sessionRepository.save(this.session);

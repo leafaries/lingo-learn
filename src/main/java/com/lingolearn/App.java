@@ -1,50 +1,88 @@
 package com.lingolearn;
 
 import com.lingolearn.core.LingoLearnApp;
-import com.lingolearn.dtos.StudyResultDTO;
+import com.lingolearn.dtos.CategoryDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.WordDTO;
+import com.lingolearn.dtos.statistics.StudyStatisticsDTO;
 import com.lingolearn.dtos.study.StudyProgressDTO;
 
-import java.nio.file.Path;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        // Create a vocabulary set
-        VocabularySetDTO travelSet = LingoLearnApp.VocabularyManager
-                .new SetCreator("Travel", "Essential travel vocabulary")
-                .addWord("hello", "hola")
-                .addWord("goodbye", "adiós")
-                .inCategory("Travel")
+        // 1. Create a vocabulary set using SetCreator
+        VocabularySetDTO foodSet = new LingoLearnApp.VocabularyManager.SetCreator("Food", "Basic food vocabulary")
+                .addWord("apple", "jabłko")
+                .addWord("bread", "chleb")
+                .addWord("milk", "mleko")
+                .inCategory("Food & Drinks")
                 .create();
 
-        // Start a flashcard session
-        LingoLearnApp.LearningSession.Session session = LingoLearnApp.LearningSession
-                .flashcards(travelSet);
+        // Get all sets
+        List<VocabularySetDTO> allSets = LingoLearnApp.VocabularyManager.getAllSets();
+        System.out.println("Total sets: " + allSets.size());
 
-        // Study loop
-        WordDTO word = session.getCurrentWord();
-        StudyProgressDTO progress = session.submitAnswer("hola");
-        StudyResultDTO result = session.complete();
+        // Update set description
+        LingoLearnApp.VocabularyManager.updateSet(foodSet, "Food", "Updated food vocabulary description");
 
-        // Start daily challenge
-        LingoLearnApp.LearningSession.Session dailyChallenge = LingoLearnApp.DailyChallenges
-                .startDaily();
+        // Create and assign a new category
+        CategoryDTO newCategory = LingoLearnApp.VocabularyManager.createCategory("Advanced Food");
+        LingoLearnApp.VocabularyManager.assignCategory(newCategory, foodSet);
 
-        // Review problem words
-        LingoLearnApp.LearningSession.Session review = LingoLearnApp.ProblemWordsReview
-                .startReview();
+        // 2. Start a flashcard learning session
+        System.out.println("\nStarting flashcard session...");
+        var flashcardSession = LingoLearnApp.LearningSession.flashcards(foodSet);
 
-        // Take a test
-        LingoLearnApp.LearningSession.Session test = LingoLearnApp.KnowledgeTest
-                .startTest(travelSet);
+        // Study loop with flashcards
+        WordDTO currentWord;
+        while ((currentWord = flashcardSession.getCurrentWord()) != null) {
+            System.out.println("Word to learn: " + currentWord.original());
+            // Simulate user input
+            StudyProgressDTO progress = flashcardSession.submitAnswer(currentWord.translation());
+            System.out.println("Progress: " + progress.correctAnswers() + "/" + progress.totalAnswered());
+        }
 
-        // Generate report
-//        ReportDTO report = LingoLearnApp.Progress
-//                .generateReport(new ReportConfigDTO());
+        // Complete the session
+        var flashcardResult = flashcardSession.complete();
+        System.out.println("Flashcard session completed with accuracy: " + flashcardResult.accuracy() + "%");
+
+        // 3. Take a daily challenge
+        System.out.println("\nStarting daily challenge...");
+        var challengeSession = LingoLearnApp.DailyChallenges.startDaily();
+        var challengeProgress = LingoLearnApp.DailyChallenges.getDailyProgress();
+        System.out.println("Current streak: " + LingoLearnApp.DailyChallenges.getCurrentStreak() + " days");
+
+        // 4. Review problematic words
+        System.out.println("\nStarting review of problematic words...");
+        var problemWords = LingoLearnApp.ProblemWordsReview.getProblemWords();
+        if (!problemWords.isEmpty()) {
+            var reviewSession = LingoLearnApp.ProblemWordsReview.startReview();
+            var reviewProgress = LingoLearnApp.ProblemWordsReview.getReviewProgress();
+            System.out.println("Words needing review: " + problemWords.size());
+        }
+
+        // 5. Take a knowledge test
+        System.out.println("\nStarting knowledge test...");
+        var testSession = LingoLearnApp.KnowledgeTest.startTest(foodSet);
+        var testHistory = LingoLearnApp.KnowledgeTest.getHistory();
+
+        // 6. Generate statistics and reports
+        StudyStatisticsDTO stats = LingoLearnApp.Progress.getStatistics();
+        System.out.println("\nLearning Statistics:");
+        System.out.println("Total words learned: " + stats.totalWordsLearned());
+        System.out.println("Overall accuracy: " + stats.getAccuracy() + "%");
+        System.out.println("Study time today: " + stats.studyTimeToday());
+        System.out.println("Current streak: " + stats.dailyStreak() + " days");
+
+        // Generate reports
+        var dailyReport = LingoLearnApp.Progress.generateDailyReport();
+        var weeklyReport = LingoLearnApp.Progress.generateWeeklyReport();
 
         // Export data
-        LingoLearnApp.DataManagement
-                .exportData(Path.of("backup.zip"));
+        LingoLearnApp.DataManagement.exportData(java.nio.file.Path.of("backup.zip"));
+
+        // Clean up - delete the set if needed
+        LingoLearnApp.VocabularyManager.deleteSet(foodSet);
     }
 }

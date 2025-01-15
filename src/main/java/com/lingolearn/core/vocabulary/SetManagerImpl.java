@@ -38,7 +38,7 @@ public class SetManagerImpl implements LingoLearn.VocabularyManager.SetManager {
 
     @Override
     public void update(VocabularySetDTO set, String name, String description) {
-        setRepository.findById(set.id()).ifPresent(entity -> {
+        setRepository.findByName(set.getName()).ifPresent(entity -> {
             entity.setName(name);
             entity.setDescription(description);
             setRepository.save(entity);
