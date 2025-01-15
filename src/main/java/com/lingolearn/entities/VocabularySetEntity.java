@@ -16,13 +16,14 @@ public class VocabularySetEntity {
     @Column(nullable = false)
     private String name;
 
+    @Column(length = 1024)
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "vocabulary_set_words",
             joinColumns = @JoinColumn(name = "set_id"),
@@ -30,13 +31,16 @@ public class VocabularySetEntity {
     )
     private Set<WordEntity> words = new HashSet<>();
 
+    @OneToMany(mappedBy = "vocabularySet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<SessionEntity> sessions = new HashSet<>();
+
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(nullable = false)
     private LocalDateTime lastModifiedAt = LocalDateTime.now();
 
-    // Getters and setters
+    // Constructors
     public VocabularySetEntity() {
     }
 
@@ -45,6 +49,68 @@ public class VocabularySetEntity {
         this.description = description;
     }
 
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        this.lastModifiedAt = LocalDateTime.now();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+        this.lastModifiedAt = LocalDateTime.now();
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+        this.lastModifiedAt = LocalDateTime.now();
+    }
+
+    public Set<WordEntity> getWords() {
+        return words;
+    }
+
+    public void setWords(Set<WordEntity> words) {
+        this.words = words;
+        this.lastModifiedAt = LocalDateTime.now();
+    }
+
+    public Set<SessionEntity> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(Set<SessionEntity> sessions) {
+        this.sessions = sessions;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getLastModifiedAt() {
+        return lastModifiedAt;
+    }
+
+    // Utility methods
     public void addWord(WordEntity word) {
         words.add(word);
         word.getVocabularySets().add(this);
@@ -57,31 +123,38 @@ public class VocabularySetEntity {
         this.lastModifiedAt = LocalDateTime.now();
     }
 
-    public CategoryEntity getCategory() {
-        return category;
+    public void addSession(SessionEntity session) {
+        sessions.add(session);
+        session.setVocabularySet(this);
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void removeSession(SessionEntity session) {
+        sessions.remove(session);
+        session.setVocabularySet(null);
     }
 
-    public String getDescription() {
-        return description;
+    // Object overrides
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof VocabularySetEntity)) return false;
+        VocabularySetEntity that = (VocabularySetEntity) o;
+        return id != null && id.equals(that.getId());
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 
-    public LocalDateTime getLastModifiedAt() {
-        return lastModifiedAt;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Set<WordEntity> getWords() {
-        return words;
+    @Override
+    public String toString() {
+        return "VocabularySetEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + (category != null ? category.getName() : "null") +
+                ", wordsCount=" + words.size() +
+                '}';
     }
 }
