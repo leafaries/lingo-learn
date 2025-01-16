@@ -22,7 +22,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class StudySessionImpl implements LingoLearn.StudyManager.Session {
     private final SessionEntity session;
@@ -255,7 +254,7 @@ public class StudySessionImpl implements LingoLearn.StudyManager.Session {
                 .map(AnswerEntity::getWord)
                 .distinct()
                 .map(mapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public SessionEntity getSessionEntity() {

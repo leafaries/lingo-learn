@@ -4,7 +4,6 @@ import com.lingolearn.core.LingoLearnApp;
 import com.lingolearn.dtos.CategoryDTO;
 import com.lingolearn.dtos.VocabularySetDTO;
 import com.lingolearn.dtos.WordDTO;
-import com.lingolearn.dtos.statistics.StudyStatisticsDTO;
 import com.lingolearn.dtos.study.StudyProgressDTO;
 
 import java.util.List;
@@ -67,20 +66,20 @@ public class App {
         var testSession = LingoLearnApp.KnowledgeTest.startTest(foodSet);
         var testHistory = LingoLearnApp.KnowledgeTest.getHistory();
 
-        // 6. Generate statistics and reports
-        StudyStatisticsDTO stats = LingoLearnApp.Progress.getStatistics();
-        System.out.println("\nLearning Statistics:");
-        System.out.println("Total words learned: " + stats.totalWordsLearned());
-        System.out.println("Overall accuracy: " + stats.getAccuracy() + "%");
-        System.out.println("Study time today: " + stats.studyTimeToday());
-        System.out.println("Current streak: " + stats.dailyStreak() + " days");
-
-        // Generate reports
-        var dailyReport = LingoLearnApp.Progress.generateDailyReport();
-        var weeklyReport = LingoLearnApp.Progress.generateWeeklyReport();
-
-        // Export data
-        LingoLearnApp.DataManagement.exportData(java.nio.file.Path.of("backup.zip"));
+//        // 6. Generate statistics and reports
+//        StudyStatisticsDTO stats = LingoLearnApp.Progress.getStatistics();
+//        System.out.println("\nLearning Statistics:");
+//        System.out.println("Total words learned: " + stats.totalWordsLearned());
+//        System.out.println("Overall accuracy: " + stats.getAccuracy() + "%");
+//        System.out.println("Study time today: " + stats.studyTimeToday());
+//        System.out.println("Current streak: " + stats.dailyStreak() + " days");
+//
+//        // Generate reports
+//        var dailyReport = LingoLearnApp.Progress.generateDailyReport();
+//        var weeklyReport = LingoLearnApp.Progress.generateWeeklyReport();
+//
+//        // Export data
+//        LingoLearnApp.DataManagement.exportData(java.nio.file.Path.of("backup.zip"));
 
         // Clean up - delete the set if needed
         LingoLearnApp.VocabularyManager.deleteSet(foodSet);

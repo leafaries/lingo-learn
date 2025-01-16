@@ -7,23 +7,19 @@ import com.lingolearn.dtos.WordDTO;
 import com.lingolearn.dtos.challenge.DailyChallengeDTO;
 import com.lingolearn.dtos.challenge.TestResultDTO;
 import com.lingolearn.dtos.config.PreferencesDTO;
-import com.lingolearn.dtos.statistics.ReportConfigDTO;
-import com.lingolearn.dtos.statistics.ReportDTO;
 import com.lingolearn.dtos.statistics.StudyStatisticsDTO;
 import com.lingolearn.dtos.study.StudyProgressDTO;
-import com.lingolearn.enums.ReportType;
 import com.lingolearn.enums.SessionType;
-import com.lingolearn.enums.StudyMode;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LingoLearnApp {
     private static final LingoLearn lingoLearn = new LingoLearnImpl();
 
-    // ==== Vocabulary Management ====
+    // =======================================
+    //          VOCABULARY MANAGEMENT
+    // =======================================
     public static class VocabularyManager {
         public static VocabularySetDTO createSet(String name, String description) {
             return new SetCreator(name, description).create();
@@ -57,6 +53,7 @@ public class LingoLearnApp {
             return lingoLearn.vocabulary().categories().getAll();
         }
 
+        // ====== Vocabulary Set Creator ======
         public static class SetCreator {
             private final String name;
             private final String description;
@@ -107,7 +104,9 @@ public class LingoLearnApp {
         }
     }
 
-    // ==== Learning Sessions ====
+    // =======================================
+    //          LEARNING SESSIONS
+    // =======================================
     public static class LearningSession {
         public static Session flashcards(VocabularySetDTO set) {
             return new Session(lingoLearn.study().flashcards().start(set));
@@ -170,7 +169,9 @@ public class LingoLearnApp {
         }
     }
 
-    // ==== Daily Challenges ====
+    // =======================================
+    //          DAILY CHALLENGES
+    // =======================================
     public static class DailyChallenges {
         public static LearningSession.Session startDaily() {
             return new LearningSession.Session(
@@ -187,11 +188,13 @@ public class LingoLearnApp {
 
         public static int getCurrentStreak() {
             StudyStatisticsDTO stats = lingoLearn.statistics().getStudyStats();
-            return stats.getDailyStreak();
+            return stats.dailyStreak();
         }
     }
 
-    // ==== Problem Words Review ====
+    // =======================================
+    //          PROBLEM WORDS REVIEW
+    // =======================================
     public static class ProblemWordsReview {
         public static LearningSession.Session startReview() {
             return new LearningSession.Session(
@@ -207,7 +210,9 @@ public class LingoLearnApp {
         }
     }
 
-    // ==== Knowledge Tests ====
+    // =======================================
+    //          KNOWLEDGE TESTS
+    // =======================================
     public static class KnowledgeTest {
         public static LearningSession.Session startTest(VocabularySetDTO set) {
             return new LearningSession.Session(
@@ -220,107 +225,107 @@ public class LingoLearnApp {
     }
 
     // ==== Progress Tracking ====
-    public static class Progress {
-        public static StudyStatisticsDTO getStatistics() {
-            return lingoLearn.statistics().getStudyStats();
-        }
-
-        public static void resetStatistics() {
-            lingoLearn.statistics().resetStats();
-        }
-
-        public static ReportDTO generateReport(ReportConfigDTO config) {
-            return lingoLearn.statistics().generateReport(config);
-        }
-
-        public static ReportDTO generateDailyReport() {
-            ReportConfigDTO config = new ReportConfigDTO(
-                    ReportType.DAILY,
-                    null,
-                    null,
-                    null
-            );
-            return generateReport(config);
-        }
-
-        public static ReportDTO generateWeeklyReport() {
-            ReportConfigDTO config = new ReportConfigDTO(
-                    ReportType.WEEKLY,
-                    null,
-                    null,
-                    null
-            );
-            return generateReport(config);
-        }
-
-        public static ReportDTO generateMonthlyReport() {
-            ReportConfigDTO config = new ReportConfigDTO(
-                    ReportType.MONTHLY,
-                    null,
-                    null,
-                    null
-            );
-            return generateReport(config);
-        }
-    }
+//    public static class Progress {
+//        public static StudyStatisticsDTO getStatistics() {
+//            return lingoLearn.statistics().getStudyStats();
+//        }
+//
+//        public static void resetStatistics() {
+//            lingoLearn.statistics().resetStats();
+//        }
+//
+//        public static ReportDTO generateReport(ReportConfigDTO config) {
+//            return lingoLearn.statistics().generateReport(config);
+//        }
+//
+//        public static ReportDTO generateDailyReport() {
+//            ReportConfigDTO config = new ReportConfigDTO(
+//                    ReportType.DAILY,
+//                    null,
+//                    null,
+//                    null
+//            );
+//            return generateReport(config);
+//        }
+//
+//        public static ReportDTO generateWeeklyReport() {
+//            ReportConfigDTO config = new ReportConfigDTO(
+//                    ReportType.WEEKLY,
+//                    null,
+//                    null,
+//                    null
+//            );
+//            return generateReport(config);
+//        }
+//
+//        public static ReportDTO generateMonthlyReport() {
+//            ReportConfigDTO config = new ReportConfigDTO(
+//                    ReportType.MONTHLY,
+//                    null,
+//                    null,
+//                    null
+//            );
+//            return generateReport(config);
+//        }
+//    }
 
     // ==== Data Management ====
-    public static class DataManagement {
-        public static void exportData(Path destination) {
-            lingoLearn.data().exportData(destination);
-        }
-
-        public static void importData(Path source) {
-            lingoLearn.data().importData(source);
-        }
-
-        public static void exportSettings(Path destination) {
-            lingoLearn.data().exportSettings(destination);
-        }
-
-        public static void importSettings(Path source) {
-            lingoLearn.data().importSettings(source);
-        }
-    }
+//    public static class DataManagement {
+//        public static void exportData(Path destination) {
+//            lingoLearn.data().exportData(destination);
+//        }
+//
+//        public static void importData(Path source) {
+//            lingoLearn.data().importData(source);
+//        }
+//
+//        public static void exportSettings(Path destination) {
+//            lingoLearn.data().exportSettings(destination);
+//        }
+//
+//        public static void importSettings(Path source) {
+//            lingoLearn.data().importSettings(source);
+//        }
+//    }
 
     // ==== Preferences Management ====
-    public static class PreferencesManager {
-        public static PreferencesDTO getPreferences() {
-            return lingoLearn.preferences().getPreferences();
-        }
-
-        public static void updatePreferences(PreferencesDTO config) {
-            lingoLearn.preferences().updatePreferences(config);
-        }
-
-        public static void setKeyboardShortcuts(Map<String, String> shortcuts) {
-            PreferencesDTO config = getPreferences();
-            config.setKeyboardShortcuts(shortcuts);
-            updatePreferences(config);
-        }
-
-        public static void setDefaultSessionType(SessionType type) {
-            PreferencesDTO config = getPreferences();
-            config.setDefaultSessionType(type);
-            updatePreferences(config);
-        }
-
-        public static void setDefaultStudyMode(StudyMode mode) {
-            PreferencesDTO config = getPreferences();
-            config.setDefaultStudyMode(mode);
-            updatePreferences(config);
-        }
-
-        public static void setSoundEnabled(boolean enabled) {
-            PreferencesDTO config = getPreferences();
-            config.setSoundEnabled(enabled);
-            updatePreferences(config);
-        }
-
-        public static void setDarkMode(boolean enabled) {
-            PreferencesDTO config = getPreferences();
-            config.setDarkMode(enabled);
-            updatePreferences(config);
-        }
-    }
+//    public static class PreferencesManager {
+//        public static PreferencesDTO getPreferences() {
+//            return lingoLearn.preferences().getPreferences();
+//        }
+//
+//        public static void updatePreferences(PreferencesDTO config) {
+//            lingoLearn.preferences().updatePreferences(config);
+//        }
+//
+//        public static void setKeyboardShortcuts(Map<String, String> shortcuts) {
+//            PreferencesDTO config = getPreferences();
+//            config.setKeyboardShortcuts(shortcuts);
+//            updatePreferences(config);
+//        }
+//
+//        public static void setDefaultSessionType(SessionType type) {
+//            PreferencesDTO config = getPreferences();
+//            config.setDefaultSessionType(type);
+//            updatePreferences(config);
+//        }
+//
+//        public static void setDefaultStudyMode(StudyMode mode) {
+//            PreferencesDTO config = getPreferences();
+//            config.setDefaultStudyMode(mode);
+//            updatePreferences(config);
+//        }
+//
+//        public static void setSoundEnabled(boolean enabled) {
+//            PreferencesDTO config = getPreferences();
+//            config.setSoundEnabled(enabled);
+//            updatePreferences(config);
+//        }
+//
+//        public static void setDarkMode(boolean enabled) {
+//            PreferencesDTO config = getPreferences();
+//            config.setDarkMode(enabled);
+//            updatePreferences(config);
+//        }
+//    }
 }
