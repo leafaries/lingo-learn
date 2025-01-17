@@ -2,10 +2,9 @@ package com.lingolearn.persistence.import_.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public record ImportJob(
-        UUID id,
+        Long id,
         ImportSource source,
         ImportStatus status,
         List<ImportError> errors,

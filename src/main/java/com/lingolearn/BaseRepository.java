@@ -17,57 +17,52 @@ public abstract class BaseRepository<T, ID> {
     }
 
     public T save(T entity) {
-        EntityManager em = dbManager.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            entity = em.merge(entity);
-            tx.commit();
-            return entity;
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            throw new RuntimeException("Failed to save entity", e);
-        } finally {
-            em.close();
-        }
+        return executeInTransaction(entityManager -> entityManager.merge(entity));
     }
 
     public Optional<T> findById(ID id) {
-        EntityManager em = dbManager.createEntityManager();
-        try {
-            T entity = em.find(entityClass, id);
-            return Optional.ofNullable(entity);
-        } finally {
-            em.close();
-        }
+        return executeWithEntityManager(entityManager -> Optional.ofNullable(entityManager.find(entityClass, id)));
     }
 
     public List<T> findAll() {
-        EntityManager em = dbManager.createEntityManager();
-        try {
-            String jpql = "SELECT e FROM " + entityClass.getSimpleName() + " e";
-            return em.createQuery(jpql, entityClass).getResultList();
-        } finally {
-            em.close();
-        }
+        String jpql = "SELECT e FROM " + entityClass.getSimpleName() + " e";
+        return executeWithEntityManager(entityManager -> entityManager.createQuery(jpql, entityClass).getResultList());
     }
 
     public void delete(T entity) {
-        EntityManager em = dbManager.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            em.remove(em.merge(entity));
-            tx.commit();
+        executeInTransaction(entityManager -> {
+            entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+            return null; // Void return
+        });
+    }
+
+    private <R> R executeWithEntityManager(EntityManagerCallback<R> action) {
+        try (EntityManager em = dbManager.createEntityManager()) {
+            return action.execute(em);
         } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            throw new RuntimeException("Failed to delete entity", e);
-        } finally {
-            em.close();
+            throw new RuntimeException("Operation failed", e);
         }
+    }
+
+    private <R> R executeInTransaction(EntityManagerCallback<R> action) {
+        try (EntityManager em = dbManager.createEntityManager()) {
+            EntityTransaction tx = em.getTransaction();
+            try {
+                tx.begin();
+                R result = action.execute(em);
+                tx.commit();
+                return result;
+            } catch (Exception e) {
+                if (tx.isActive()) {
+                    tx.rollback();
+                }
+                throw new RuntimeException("Transaction failed", e);
+            }
+        }
+    }
+
+    @FunctionalInterface
+    private interface EntityManagerCallback<R> {
+        R execute(EntityManager em);
     }
 }

@@ -1,8 +1,13 @@
 package com.lingolearn.progress.report.domain;
 
+import com.lingolearn.progress.metrics.domain.CategoryProgress;
+import com.lingolearn.progress.metrics.domain.OverallProgress;
+import com.lingolearn.progress.metrics.domain.StudySession;
 import com.lingolearn.vocabulary.category.domain.Category;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public record ProgressReport(

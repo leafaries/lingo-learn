@@ -1,11 +1,10 @@
 package com.lingolearn.persistence.export.domain;
 
 import java.util.List;
-import java.util.UUID;
 
 public record ExportConfiguration(
-        UUID id,
-        List<UUID> vocabularySetIds,
+        Long id,
+        List<Long> vocabularySetIds,
         ExportFormat format,
         boolean includeProgress,
         boolean includeStatistics

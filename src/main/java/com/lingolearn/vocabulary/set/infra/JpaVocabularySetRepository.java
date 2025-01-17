@@ -4,6 +4,7 @@ import com.lingolearn.BaseRepository;
 import com.lingolearn.vocabulary.set.domain.VocabularySet;
 import com.lingolearn.vocabulary.set.usecase.VocabularySetRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

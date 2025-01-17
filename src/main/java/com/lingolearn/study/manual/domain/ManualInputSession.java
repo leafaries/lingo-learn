@@ -1,10 +1,10 @@
 package com.lingolearn.study.manual.domain;
 
-import java.util.UUID;
+import java.util.List;
 
 public record ManualInputSession(
-        UUID id,
-        UUID vocabularySetId,
+        Long id,
+        Long vocabularySetId,
         List<ManualInputQuestion> questions,
         int currentQuestionIndex
 ) {

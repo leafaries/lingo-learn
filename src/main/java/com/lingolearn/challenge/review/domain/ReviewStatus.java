@@ -5,7 +5,7 @@ import com.lingolearn.vocabulary.word.domain.Word;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record ReviewSession(
+public record ReviewStatus(
         Long id,
         List<Word> wordsToReview,
         ReviewStatus status,

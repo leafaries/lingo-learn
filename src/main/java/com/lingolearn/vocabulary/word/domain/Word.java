@@ -2,10 +2,9 @@ package com.lingolearn.vocabulary.word.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public record Word(
-        UUID id,
+        Long id,
         String original,
         String translation,
         String partOfSpeech,
