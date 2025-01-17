@@ -22,6 +22,7 @@ public record Word(
         if (translation == null || translation.isBlank()) {
             throw new IllegalArgumentException("Translation cannot be empty;");
         }
+        exampleSentences = exampleSentences != null ? List.copyOf(exampleSentences) : List.of();
     }
 
     public double getSuccessRate() {

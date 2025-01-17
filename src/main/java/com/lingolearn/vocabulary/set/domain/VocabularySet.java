@@ -1,5 +1,7 @@
 package com.lingolearn.vocabulary.set.domain;
 
+import com.lingolearn.progress.metrics.domain.StudyProgress;
+import com.lingolearn.progress.metrics.domain.StudySession;
 import com.lingolearn.vocabulary.category.domain.Category;
 import com.lingolearn.vocabulary.word.domain.Word;
 
