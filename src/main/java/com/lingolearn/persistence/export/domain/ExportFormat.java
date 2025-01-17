@@ -1,4 +1,7 @@
 package com.lingolearn.persistence.export.domain;
 
-record ExportFormat() {
+public enum ExportFormat {
+    CSV,
+    JSON,
+    XML
 }

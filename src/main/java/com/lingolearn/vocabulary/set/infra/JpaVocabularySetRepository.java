@@ -1,6 +1,6 @@
 package com.lingolearn.vocabulary.set.infra;
 
-import com.lingolearn.BaseRepository;
+import com.lingolearn.common.infra.BaseRepository;
 import com.lingolearn.vocabulary.set.domain.VocabularySet;
 import com.lingolearn.vocabulary.set.usecase.VocabularySetRepository;
 

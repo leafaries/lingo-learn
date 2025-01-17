@@ -1,4 +1,7 @@
 package com.lingolearn.persistence.import_.domain;
 
-enum ImportSource {
+public enum ImportSource {
+    FILE,
+    URL,
+    CLIPBOARD
 }

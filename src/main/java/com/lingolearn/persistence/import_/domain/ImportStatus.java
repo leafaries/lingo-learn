@@ -1,4 +1,8 @@
 package com.lingolearn.persistence.import_.domain;
 
-enum ImportStatus {
+public enum ImportStatus {
+    PENDING,
+    IN_PROGRESS,
+    COMPLETED,
+    FAILED
 }

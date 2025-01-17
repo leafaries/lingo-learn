@@ -1,8 +1,7 @@
-package com.lingolearn;
+package com.lingolearn.common.infra;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import repos.DatabaseManager;
 
 import java.util.List;
 import java.util.Optional;

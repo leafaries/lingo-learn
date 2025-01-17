@@ -14,6 +14,13 @@ public record VocabularySet(
         Category category,
         StudyProgress progress,
         LocalDateTime lastStudied,
-        List<StudySession> sessions
+        List<StudySession> sessions,
+        int targetDailyWords,
+        boolean isActive
 ) {
+    public List<Word> getWordsNeedingReview() {
+        return words.stream()
+                .filter(Word::needsReview)
+                .toList();
+    }
 }

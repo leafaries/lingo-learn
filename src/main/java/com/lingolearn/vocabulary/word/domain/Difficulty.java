@@ -1,5 +1,5 @@
 package com.lingolearn.vocabulary.word.domain;
 
-public enum DifficultyLevel {
+public enum Difficulty {
     EASY, MEDIUM, HARD
 }

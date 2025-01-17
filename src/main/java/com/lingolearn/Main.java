@@ -1,11 +1,5 @@
 package com.lingolearn;
 
-import horizontallayers.interfaceadapters.dtos.CategoryDTO;
-import horizontallayers.interfaceadapters.dtos.VocabularySetDTO;
-import horizontallayers.interfaceadapters.dtos.WordDTO;
-import horizontallayers.interfaceadapters.dtos.study.StudyProgressDTO;
-import horizontallayers.usecases.core.LingoLearnApp;
-
 import java.util.List;
 
 public class Main {

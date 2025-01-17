@@ -1,4 +1,4 @@
-package repos;
+package com.lingolearn.common.infra;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
