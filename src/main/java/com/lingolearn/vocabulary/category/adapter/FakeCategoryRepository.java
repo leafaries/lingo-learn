@@ -1,6 +1,6 @@
-package com.lingolearn.vocabulary.set.adapter.testapi;
+package com.lingolearn.vocabulary.category.adapter;
 
-public class FakeVocabularySetRepository {
+public class FakeCategoryRepository {
     public void clear() {
         // TODO: Impl
 //        throw new NotImplementedException();

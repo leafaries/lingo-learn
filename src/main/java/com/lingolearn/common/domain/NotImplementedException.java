@@ -1,4 +1,4 @@
-package com.lingolearn;
+package com.lingolearn.common.domain;
 
 public class NotImplementedException extends RuntimeException {
     public NotImplementedException() {

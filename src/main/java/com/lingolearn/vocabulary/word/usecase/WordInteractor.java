@@ -20,67 +20,74 @@ public class WordInteractor implements WordInteractorInputPort {
 
     @Override
     public void createWord(CreateWordRequestModel request) {
-        // Check if word already exists
-        repository.findByOriginalAndTranslation(request.original(), request.translation())
-                .ifPresent(word -> {
-                    throw new IllegalArgumentException("Word with this original and translation already exists");
-                });
+        try {
+            repository.findByOriginalAndTranslation(request.original(), request.translation())
+                    .ifPresent(word -> {
+                        throw new IllegalArgumentException("Word with this original and translation already exists");
+                    });
 
-        var word = new Word(
-                null,
-                request.original(),
-                request.translation(),
-                request.partOfSpeech(),
-                request.exampleSentences(),
-                request.difficulty(),
-                null,
-                0,
-                0
-        );
+            var word = new Word(
+                    null,
+                    request.original(),
+                    request.translation(),
+                    request.partOfSpeech(),
+                    request.exampleSentences(),
+                    request.difficulty(),
+                    null,
+                    0,
+                    0
+            );
 
-        var savedWord = repository.save(word);
+            var savedWord = repository.save(word);
 
-        var response = new CreateWordResponseModel(
-                savedWord.id(),
-                savedWord.original(),
-                savedWord.translation(),
-                savedWord.partOfSpeech(),
-                savedWord.exampleSentences(),
-                savedWord.difficulty()
-        );
+            var response = new CreateWordResponseModel(
+                    savedWord.id(),
+                    savedWord.original(),
+                    savedWord.translation(),
+                    savedWord.partOfSpeech(),
+                    savedWord.exampleSentences(),
+                    savedWord.difficulty()
+            );
 
-        outputPort.presentCreatedWord(response);
+            outputPort.presentCreatedWord(response);
+        } catch (IllegalArgumentException e) {
+            outputPort.presentError(e.getMessage());
+        }
     }
 
     @Override
     public void updateWord(UpdateWordRequestModel request) {
-        var existingWord = repository.findById(request.id())
-                .orElseThrow(() -> new WordNotFoundException(request.id()));
+        try {
+            var existingWord = repository.findById(request.id())
+                    .orElseThrow(() -> new WordNotFoundException(request.id()));
 
-        var updatedWord = new Word(
-                existingWord.id(),
-                request.original(),
-                request.translation(),
-                request.partOfSpeech(),
-                request.exampleSentences(),
-                request.difficulty(),
-                existingWord.lastReviewed(),
-                existingWord.timesReviewed(),
-                existingWord.correctAnswers()
-        );
+            var updatedWord = new Word(
+                    existingWord.id(),
+                    request.original(),
+                    request.translation(),
+                    request.partOfSpeech(),
+                    request.exampleSentences(),
+                    request.difficulty(),
+                    existingWord.lastReviewed(),
+                    existingWord.timesReviewed(),
+                    existingWord.correctAnswers()
+            );
 
-        var savedWord = repository.save(updatedWord);
+            var savedWord = repository.save(updatedWord);
 
-        var response = new UpdateWordResponseModel(
-                savedWord.id(),
-                savedWord.original(),
-                savedWord.translation(),
-                savedWord.partOfSpeech(),
-                savedWord.exampleSentences(),
-                savedWord.difficulty()
-        );
+            var response = new UpdateWordResponseModel(
+                    savedWord.id(),
+                    savedWord.original(),
+                    savedWord.translation(),
+                    savedWord.partOfSpeech(),
+                    savedWord.exampleSentences(),
+                    savedWord.difficulty()
+            );
 
-        outputPort.presentUpdatedWord(response);
+            outputPort.presentUpdatedWord(response);
+        } catch (WordNotFoundException e) {
+            outputPort.presentError(e.getMessage());
+        }
     }
 
     @Override
@@ -89,7 +96,7 @@ public class WordInteractor implements WordInteractorInputPort {
             repository.deleteByIdOrThrow(id);
             outputPort.presentWordDeleted(id);
         } catch (WordNotFoundException e) {
-            throw e;
+            outputPort.presentError(e.getMessage());
         }
     }
 

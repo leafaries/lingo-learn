@@ -13,4 +13,5 @@ public interface WordInteractorOutputPort {
     void presentWords(List<GetWordResponseModel> response);
     void presentWordDeleted(Long id);
     void presentAttemptRecorded(Long wordId);
+    void presentError(String errorMessage);
 }

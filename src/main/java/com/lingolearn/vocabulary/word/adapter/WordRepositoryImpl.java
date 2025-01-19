@@ -1,8 +1,10 @@
-package com.lingolearn.vocabulary.word.infra;
+package com.lingolearn.vocabulary.word.adapter;
 
 import com.lingolearn.vocabulary.word.domain.Difficulty;
 import com.lingolearn.vocabulary.word.domain.Word;
 import com.lingolearn.vocabulary.word.domain.WordNotFoundException;
+import com.lingolearn.vocabulary.word.infra.WordDatabase;
+import com.lingolearn.vocabulary.word.infra.WordMapper;
 import com.lingolearn.vocabulary.word.usecase.WordRepository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.lingolearn.vocabulary.set.adapter;
 
-import com.lingolearn.NotImplementedException;
+import com.lingolearn.common.domain.NotImplementedException;
 import com.lingolearn.vocabulary.set.usecase.MergeSetResponseModel;
 import com.lingolearn.vocabulary.set.usecase.VocabularySetOutputPort;
 import com.lingolearn.vocabulary.set.usecase.responsemodel.VocabularySetDetailResponseModel;

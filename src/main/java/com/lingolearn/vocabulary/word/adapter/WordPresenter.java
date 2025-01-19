@@ -93,6 +93,11 @@ public class WordPresenter implements WordInteractorOutputPort {
         }
     }
 
+    @Override
+    public void presentError(String errorMessage) {
+        viewModel.setError(errorMessage);
+    }
+
     private WordDisplayModel mapToViewModel(CreateWordResponseModel response) {
         return new WordDisplayModel(
                 response.id(),

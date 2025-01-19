@@ -1,6 +1,6 @@
 package com.lingolearn.vocabulary.set.usecase;
 
-import com.lingolearn.NotImplementedException;
+import com.lingolearn.common.domain.NotImplementedException;
 import com.lingolearn.vocabulary.set.usecase.requestmodel.*;
 
 import java.util.List;

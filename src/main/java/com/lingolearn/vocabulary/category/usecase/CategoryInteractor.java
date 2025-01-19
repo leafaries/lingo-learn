@@ -1,6 +1,6 @@
 package com.lingolearn.vocabulary.category.usecase;
 
-import com.lingolearn.NotImplementedException;
+import com.lingolearn.common.domain.NotImplementedException;
 import com.lingolearn.vocabulary.set.usecase.VocabularySetRepository;
 
 class CategoryInteractor implements CategoryInputPort {

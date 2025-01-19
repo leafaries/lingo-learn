@@ -1,12 +1,13 @@
 package com.lingolearn;
 
+import com.lingolearn.common.infra.DatabaseManager;
 import com.lingolearn.vocabulary.word.adapter.WordController;
 import com.lingolearn.vocabulary.word.adapter.WordPresenter;
+import com.lingolearn.vocabulary.word.adapter.WordRepositoryImpl;
 import com.lingolearn.vocabulary.word.adapter.WordViewModel;
 import com.lingolearn.vocabulary.word.adapter.dtos.CreateWordDTO;
 import com.lingolearn.vocabulary.word.domain.Difficulty;
 import com.lingolearn.vocabulary.word.infra.WordDatabaseImpl;
-import com.lingolearn.vocabulary.word.infra.WordRepositoryImpl;
 import com.lingolearn.vocabulary.word.infra.ui.WordView;
 import com.lingolearn.vocabulary.word.usecase.WordInteractor;
 
@@ -36,7 +37,6 @@ public class Main {
                 Difficulty.HARD
         ));
 
-        // some magic
-
+        DatabaseManager.getInstance().shutdown();
     }
 }
