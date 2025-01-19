@@ -7,8 +7,8 @@ import com.lingolearn.vocabulary.word.domain.WordNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-public interface WordRepositoryGateway {
-    Word save(Word word);
+public interface WordRepository {
+    void save(Word word);
     Optional<Word> findById(Long id);
     List<Word> findAll();
     void deleteById(Long id);

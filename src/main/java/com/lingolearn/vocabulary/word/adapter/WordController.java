@@ -8,8 +8,6 @@ import com.lingolearn.vocabulary.word.usecase.UpdateWordUseCase;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.CreateWordRequestModel;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.UpdateWordRequestModel;
 
-import java.util.function.*;
-
 public class WordController {
     private final CreateWordUseCase createWordUseCase;
     private final UpdateWordUseCase updateWordUseCase;
@@ -44,16 +42,8 @@ public class WordController {
                 dto.exampleSentences(),
                 dto.difficulty()
         );
-        Function<Integer, Integer> a = i -> 77;
-        BiFunction<Integer, Integer, Integer> b = (i, j) -> i + j + 13;
-        BiConsumer<Integer, Integer> c = (i, j) -> {
-        };
-        Consumer<Integer> d = (i) -> {
-        };
-        Predicate predicate;
-        BiPredicate biPredicate;
 
-        deleteWordUseCase.execute(updateWordRequestModel);
+        updateWordUseCase.execute(updateWordRequestModel);
     }
 
     public void deleteWord(Long id) {

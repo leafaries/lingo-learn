@@ -7,8 +7,8 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class WordRepository extends BaseRepository<WordEntity, Long> {
-    public WordRepository() {
+public class JpaWordRepository extends BaseRepository<WordEntity, Long> {
+    public JpaWordRepository() {
         super(WordEntity.class);
     }
 

@@ -51,11 +51,10 @@ public class JpaVocabularySetDatabaseImpl extends BaseRepository<VocabularySet, 
 //        findById(id).ifPresent(this::delete);
     }
 
-    @Override
-    public void assignCategory(Long setId, Long categoryId) {
-        // TODO: Impl
-        throw new NotImplementedException();
-
+//    public void assignCategory(Long setId, Long categoryId) {
+//        // TODO: Impl
+//        throw new NotImplementedException();
+//
 //        EntityManager em = dbManager.createEntityManager();
 //        EntityTransaction tx = em.getTransaction();
 //        try {
@@ -73,5 +72,5 @@ public class JpaVocabularySetDatabaseImpl extends BaseRepository<VocabularySet, 
 //        } finally {
 //            em.close();
 //        }
-    }
+//    }
 }

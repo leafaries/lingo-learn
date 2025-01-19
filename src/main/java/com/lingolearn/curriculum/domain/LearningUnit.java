@@ -8,7 +8,7 @@ public record LearningUnit(
         Long id,
         String topic,
         List<VocabularySet> requiredSets,
-        List<VocabularyUnit> prerequisites,
+//        List<VocabularyUnit> prerequisites,
         int ordinalNumber,
         UnitStatus status
 ) {

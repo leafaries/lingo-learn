@@ -1,32 +1,33 @@
 package com.lingolearn.vocabulary.word.usecase;
 
-import com.lingolearn.vocabulary.word.domain.Word;
-import com.lingolearn.vocabulary.word.domain.WordNotFoundException;
+import com.lingolearn.NotImplementedException;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.UpdateWordRequestModel;
 
 public class FindWordsByProficiencyUseCase {
-    private final WordRepositoryGateway repository;
+    private final WordRepository repository;
 
-    public FindWordsByProficiencyUseCase(WordRepositoryGateway repository) {
+    public FindWordsByProficiencyUseCase(WordRepository repository) {
         this.repository = repository;
     }
 
     public void execute(UpdateWordRequestModel request) {
-        var existingWord = repository.findById(request.id())
-                .orElseThrow(() -> new WordNotFoundException(request.id()));
-
-        var updatedWord = new Word(
-                existingWord.id(),
-                request.original(),
-                request.translation(),
-                request.partOfSpeech(),
-                request.exampleSentences(),
-                request.difficulty(),
-                existingWord.lastReviewed(),
-                existingWord.timesReviewed(),
-                existingWord.correctAnswers()
-        );
-
-        var savedWord = repository.save(updatedWord);
+        // TODO: Impl
+        throw new NotImplementedException();
+//        var existingWord = repository.findById(request.id())
+//                .orElseThrow(() -> new WordNotFoundException(request.id()));
+//
+//        var updatedWord = new Word(
+//                existingWord.id(),
+//                request.original(),
+//                request.translation(),
+//                request.partOfSpeech(),
+//                request.exampleSentences(),
+//                request.difficulty(),
+//                existingWord.lastReviewed(),
+//                existingWord.timesReviewed(),
+//                existingWord.correctAnswers()
+//        );
+//
+//        var savedWord = repository.save(updatedWord);
     }
 }

@@ -1,28 +1,30 @@
 package com.lingolearn.vocabulary.word.usecase;
 
-import com.lingolearn.vocabulary.word.domain.Word;
+import com.lingolearn.NotImplementedException;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.CreateWordRequestModel;
 
 public class CreateWordUseCase {
-    private final WordRepositoryGateway repository;
+    private final WordRepository repository;
 
-    public CreateWordUseCase(WordRepositoryGateway repository) {
+    public CreateWordUseCase(WordRepository repository) {
         this.repository = repository;
     }
 
     public void execute(CreateWordRequestModel request) {
-        var word = new Word(
-                null,
-                request.original(),
-                request.translation(),
-                request.partOfSpeech(),
-                request.exampleSentences(),
-                request.difficulty(),
-                null,
-                0,
-                0
-        );
-
-        repository.save(word);
+        // TODO: Impl
+        throw new NotImplementedException();
+//        var word = new Word(
+//                null,
+//                request.original(),
+//                request.translation(),
+//                request.partOfSpeech(),
+//                request.exampleSentences(),
+//                request.difficulty(),
+//                null,
+//                0,
+//                0
+//        );
+//
+//        repository.save(word);
     }
 }
