@@ -15,17 +15,19 @@ public abstract class BaseRepository<T, ID> {
         this.dbManager = DatabaseManager.getInstance();
     }
 
-    public void save(T entity) {
-        executeInTransaction(entityManager -> entityManager.merge(entity));
+    public T save(T entity) {
+        return executeInTransaction(entityManager -> entityManager.merge(entity));
     }
 
     public Optional<T> findById(ID id) {
-        return executeWithEntityManager(entityManager -> Optional.ofNullable(entityManager.find(entityClass, id)));
+        return executeWithEntityManager(entityManager ->
+                Optional.ofNullable(entityManager.find(entityClass, id)));
     }
 
     public List<T> findAll() {
         String jpql = "SELECT e FROM " + entityClass.getSimpleName() + " e";
-        return executeWithEntityManager(entityManager -> entityManager.createQuery(jpql, entityClass).getResultList());
+        return executeWithEntityManager(entityManager ->
+                entityManager.createQuery(jpql, entityClass).getResultList());
     }
 
     public void delete(T entity) {
@@ -35,7 +37,7 @@ public abstract class BaseRepository<T, ID> {
         });
     }
 
-    private <R> R executeWithEntityManager(EntityManagerCallback<R> action) {
+    protected <R> R executeWithEntityManager(EntityManagerCallback<R> action) {
         try (EntityManager em = dbManager.createEntityManager()) {
             return action.execute(em);
         } catch (Exception e) {
@@ -43,13 +45,14 @@ public abstract class BaseRepository<T, ID> {
         }
     }
 
-    private <R> void executeInTransaction(EntityManagerCallback<R> action) {
+    protected <R> R executeInTransaction(EntityManagerCallback<R> action) {
         try (EntityManager em = dbManager.createEntityManager()) {
             EntityTransaction tx = em.getTransaction();
             try {
                 tx.begin();
-                action.execute(em);
+                R result = action.execute(em);
                 tx.commit();
+                return result;
             } catch (Exception e) {
                 if (tx.isActive()) {
                     tx.rollback();
@@ -60,7 +63,7 @@ public abstract class BaseRepository<T, ID> {
     }
 
     @FunctionalInterface
-    private interface EntityManagerCallback<R> {
+    protected interface EntityManagerCallback<R> {
         R execute(EntityManager em);
     }
 }

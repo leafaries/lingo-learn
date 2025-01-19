@@ -2,6 +2,17 @@ package com.lingolearn;
 
 import com.lingolearn.presententatioofthepubsub.SomeRandomViewModel;
 import com.lingolearn.presententatioofthepubsub.View;
+import com.lingolearn.vocabulary.word.adapter.WordController;
+import com.lingolearn.vocabulary.word.adapter.WordPresenter;
+import com.lingolearn.vocabulary.word.adapter.WordViewModel;
+import com.lingolearn.vocabulary.word.adapter.dtos.CreateWordDTO;
+import com.lingolearn.vocabulary.word.domain.Difficulty;
+import com.lingolearn.vocabulary.word.infra.WordDatabaseImpl;
+import com.lingolearn.vocabulary.word.infra.WordRepositoryImpl;
+import com.lingolearn.vocabulary.word.infra.ui.WordView;
+import com.lingolearn.vocabulary.word.usecase.WordInteractor;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,12 +21,22 @@ public class Main {
         vm.mainBusinessLogic();
 
         // Testing of word functionality
-//        WordViewModel wordViewModel = new WordViewModel();
-//        WordInteractorOutputPort wordPresenter = new WordPresenter(wordViewModel);
-//        WordRepository wordRepository =
-//        WordInteractorInputPort wordInteractor = new WordInteractor(wordPresenter, );
-//        WordController wordController = new WordController();
-//        WordView wordView = new WordView();
+        var wordDatabase = new WordDatabaseImpl();
+        var wordRepository = new WordRepositoryImpl(wordDatabase);
+
+        var wordViewModel = new WordViewModel();
+        var wordPresenter = new WordPresenter(wordViewModel);
+
+        var wordInteractor = new WordInteractor(wordPresenter, wordRepository);
+        var wordController = new WordController(wordInteractor);
+        var wordView = new WordView(wordController, wordViewModel);
+        wordView.createNewWord(new CreateWordDTO(
+                "original",
+                "translation",
+                "partOfSpeech",
+                List.of("123", "2222"),
+                Difficulty.HARD
+        ));
 
         // some logic
 
