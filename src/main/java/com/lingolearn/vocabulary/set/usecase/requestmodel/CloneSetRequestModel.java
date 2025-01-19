@@ -1,7 +1,8 @@
 package com.lingolearn.vocabulary.set.usecase.requestmodel;
 
-public record AssignCategoryRequestModel(
-        Long setId,
+public record CloneSetRequestModel(
+        Long sourceSetId,
+        String newName,
         Long categoryId
 ) {
 }

@@ -1,29 +1,39 @@
 package com.lingolearn.vocabulary.set.adapter;
 
+import com.lingolearn.NotImplementedException;
+import com.lingolearn.vocabulary.set.usecase.MergeSetResponseModel;
 import com.lingolearn.vocabulary.set.usecase.VocabularySetOutputPort;
-import com.lingolearn.vocabulary.set.usecase.responsemodel.AddWordsResponseModel;
-import com.lingolearn.vocabulary.set.usecase.responsemodel.AssignCategoryResponseModel;
-import com.lingolearn.vocabulary.set.usecase.responsemodel.CreateSetResponseModel;
-import com.lingolearn.vocabulary.set.usecase.responsemodel.GetSetsResponseModel;
+import com.lingolearn.vocabulary.set.usecase.responsemodel.VocabularySetDetailResponseModel;
+import com.lingolearn.vocabulary.set.usecase.responsemodel.VocabularySetListResponseModel;
 
 public class VocabularySetPresenter implements VocabularySetOutputPort {
     @Override
-    public void presentSet(CreateSetResponseModel response) {
+    public void presentSetDetails(VocabularySetDetailResponseModel response) {
         // TODO: Impl
+        throw new NotImplementedException();
     }
 
     @Override
-    public void presentUpdatedSet(AddWordsResponseModel response) {
+    public void presentSetList(VocabularySetListResponseModel response) {
         // TODO: Impl
+        throw new NotImplementedException();
     }
 
     @Override
-    public void presentCategory(AssignCategoryResponseModel response) {
+    public void presentMergeResult(MergeSetResponseModel response) {
         // TODO: Impl
+        throw new NotImplementedException();
     }
 
     @Override
-    public void presentSetList(GetSetsResponseModel response) {
+    public void presentError(String errorMessage) {
         // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void presentSuccess(String message) {
+        // TODO: Impl
+        throw new NotImplementedException();
     }
 }

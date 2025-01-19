@@ -3,7 +3,7 @@ package com.lingolearn.progress.report.domain;
 import com.lingolearn.progress.metrics.domain.CategoryProgress;
 import com.lingolearn.progress.metrics.domain.OverallProgress;
 import com.lingolearn.progress.metrics.domain.StudySession;
-import com.lingolearn.vocabulary.category.domain.Category;
+import com.lingolearn.vocabulary.category.domain.CategoryHierarchyNode;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +16,7 @@ public record ProgressReport(
         LocalDateTime generatedAt,
         ReportTimeframe timeframe,
         List<StudySession> sessions,
-        Map<Category, CategoryProgress> progressByCategory,
+        Map<CategoryHierarchyNode, CategoryProgress> progressByCategory,
         OverallProgress overallProgress
 ) {
 }

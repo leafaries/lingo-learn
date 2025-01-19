@@ -1,6 +1,6 @@
 package com.lingolearn.progress.metrics.domain;
 
-import com.lingolearn.vocabulary.category.domain.Category;
+import com.lingolearn.vocabulary.category.domain.CategoryHierarchyNode;
 
 import java.util.Map;
 
@@ -9,5 +9,5 @@ public record OverallProgress(
         int totalWords,
         int masteredWords,
         double averageAccuracy,
-        Map<Category, Integer> wordsByCategory) {
+        Map<CategoryHierarchyNode, Integer> wordsByCategory) {
 }

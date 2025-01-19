@@ -1,78 +1,74 @@
 package com.lingolearn.vocabulary.set.usecase;
 
-import com.lingolearn.vocabulary.set.usecase.requestmodel.AddWordsRequestModel;
-import com.lingolearn.vocabulary.set.usecase.requestmodel.AssignCategoryRequestModel;
-import com.lingolearn.vocabulary.set.usecase.requestmodel.CreateSetRequestModel;
-import com.lingolearn.vocabulary.set.usecase.requestmodel.DeleteSetRequestModel;
+import com.lingolearn.NotImplementedException;
+import com.lingolearn.vocabulary.set.usecase.requestmodel.*;
+
+import java.util.List;
 
 public class VocabularySetInteractor implements VocabularySetInputPort {
-    private final VocabularySetRepository repository;
-    private final VocabularySetOutputPort outputPort;
-
-    public VocabularySetInteractor(
-            VocabularySetOutputPort outputPort,
-            VocabularySetRepository repository
-    ) {
-        this.outputPort = outputPort;
-        this.repository = repository;
-    }
-
     @Override
     public void createSet(CreateSetRequestModel request) {
         // TODO: Impl
-//        var set = new VocabularySet(
-//                UUID.randomUUID(),
-//                request.name(),
-//                request.description(),
-//                new ArrayList<>()
-//        );
-//
-//        var savedSet = repository.save(set);
-//        return new CreateSetResponseModel(
-//                savedSet.id(),
-//                savedSet.name(),
-//                savedSet.description(),
-//                savedSet.words()
-//        );
+        throw new NotImplementedException();
     }
 
     @Override
-    public void addWords(AddWordsRequestModel request) {
+    public void updateSet(UpdateSetRequestModel request) {
         // TODO: Impl
-//        var set = repository.findById(request.setId())
-//                .orElseThrow(() -> new VocabularySetNotFoundException(request.setId()));
-//
-//        var updatedWords = new ArrayList<>(set.words());
-//        updatedWords.addAll(request.words());
-//
-//        var updatedSet = new VocabularySet(
-//                set.id(),
-//                set.name(),
-//                set.description(),
-//                updatedWords
-//        );
-//
-//        var savedSet = repository.save(updatedSet);
-//        return new AddWordsResponseModel(
-//                savedSet.id(),
-//                savedSet.name(),
-//                savedSet.description(),
-//                savedSet.words()
-//        );
+        throw new NotImplementedException();
     }
 
     @Override
-    public void assignCategory(AssignCategoryRequestModel request) {
+    public void deleteSet(Long setId) {
         // TODO: Impl
+        throw new NotImplementedException();
     }
 
     @Override
-    public void getSets() {
+    public void mergeSets(MergeSetRequestModel request) {
         // TODO: Impl
+        throw new NotImplementedException();
     }
 
     @Override
-    public void deleteSet(DeleteSetRequestModel request) {
+    public void cloneSet(CloneSetRequestModel request) {
         // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void getSetDetails(Long setId) {
+        // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void listSets(FilterSetsRequestModel request) {
+        // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void addWordsToSet(Long setId, List<Long> wordIds) {
+        // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void removeWordsFromSet(Long setId, List<Long> wordIds) {
+        // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void moveToCategory(Long setId, Long categoryId) {
+        // TODO: Impl
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void setActive(Long setId, boolean active) {
+        // TODO: Impl
+        throw new NotImplementedException();
     }
 }
