@@ -1,24 +1,17 @@
 package com.lingolearn.vocabulary.word.adapter;
 
+import com.lingolearn.NotImplementedException;
 import com.lingolearn.vocabulary.word.adapter.dtos.CreateWordDTO;
 import com.lingolearn.vocabulary.word.adapter.dtos.UpdateWordDTO;
-import com.lingolearn.vocabulary.word.usecase.CreateWordUseCase;
-import com.lingolearn.vocabulary.word.usecase.DeleteWordUseCase;
-import com.lingolearn.vocabulary.word.usecase.UpdateWordUseCase;
+import com.lingolearn.vocabulary.word.usecase.WordInteractorInputPort;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.CreateWordRequestModel;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.UpdateWordRequestModel;
 
 public class WordController {
-    private final CreateWordUseCase createWordUseCase;
-    private final UpdateWordUseCase updateWordUseCase;
-    private final DeleteWordUseCase deleteWordUseCase;
+    private final WordInteractorInputPort wordInteractor;
 
-    public WordController(CreateWordUseCase createWordUseCase,
-                          UpdateWordUseCase updateWordUseCase,
-                          DeleteWordUseCase deleteWordUseCase) {
-        this.createWordUseCase = createWordUseCase;
-        this.updateWordUseCase = updateWordUseCase;
-        this.deleteWordUseCase = deleteWordUseCase;
+    public WordController(WordInteractorInputPort wordInteractor) {
+        this.wordInteractor = wordInteractor;
     }
 
     public void createWord(CreateWordDTO dto) {
@@ -30,7 +23,9 @@ public class WordController {
                 dto.difficulty()
         );
 
-        createWordUseCase.execute(createWordRequestModel);
+        // TODO: Impl
+        throw new NotImplementedException();
+//        createWordUseCase.execute(createWordRequestModel);
     }
 
     public void updateWord(UpdateWordDTO dto) {
@@ -43,10 +38,14 @@ public class WordController {
                 dto.difficulty()
         );
 
-        updateWordUseCase.execute(updateWordRequestModel);
+        // TODO: Impl
+        throw new NotImplementedException();
+//        updateWordUseCase.execute(updateWordRequestModel);
     }
 
     public void deleteWord(Long id) {
-        deleteWordUseCase.execute(id);
+        // TODO: Impl
+        throw new NotImplementedException();
+//        deleteWordUseCase.execute(id);
     }
 }

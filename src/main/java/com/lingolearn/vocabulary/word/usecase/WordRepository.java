@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface WordRepository {
-    void save(Word word);
+    Word save(Word word);
     Optional<Word> findById(Long id);
     List<Word> findAll();
     void deleteById(Long id);
