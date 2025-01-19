@@ -12,7 +12,7 @@ public record VocabularyTest(
         LocalDateTime finishedAt,
         double score
 ) {
-    public boolean isInProgress() {
-        return status == TestStatus.IN_PROGRESS;
-    }
+//    public boolean isInProgress() {
+//        return status == TestStatus.IN_PROGRESS;
+//    }
 }

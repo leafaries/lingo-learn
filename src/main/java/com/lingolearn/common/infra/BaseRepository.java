@@ -15,8 +15,8 @@ public abstract class BaseRepository<T, ID> {
         this.dbManager = DatabaseManager.getInstance();
     }
 
-    public T save(T entity) {
-        return executeInTransaction(entityManager -> entityManager.merge(entity));
+    public void save(T entity) {
+        executeInTransaction(entityManager -> entityManager.merge(entity));
     }
 
     public Optional<T> findById(ID id) {
@@ -43,14 +43,13 @@ public abstract class BaseRepository<T, ID> {
         }
     }
 
-    private <R> R executeInTransaction(EntityManagerCallback<R> action) {
+    private <R> void executeInTransaction(EntityManagerCallback<R> action) {
         try (EntityManager em = dbManager.createEntityManager()) {
             EntityTransaction tx = em.getTransaction();
             try {
                 tx.begin();
-                R result = action.execute(em);
+                action.execute(em);
                 tx.commit();
-                return result;
             } catch (Exception e) {
                 if (tx.isActive()) {
                     tx.rollback();

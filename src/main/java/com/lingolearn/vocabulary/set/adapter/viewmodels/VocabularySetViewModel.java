@@ -1,10 +1,9 @@
-package com.lingolearn.vocabulary.set.adapter.viewmodel;
+package com.lingolearn.vocabulary.set.adapter.viewmodels;
 
 import java.util.List;
-import java.util.UUID;
 
 public record VocabularySetViewModel(
-        UUID id,
+        Long id,
         String name,
         String description,
         List<WordViewModel> words

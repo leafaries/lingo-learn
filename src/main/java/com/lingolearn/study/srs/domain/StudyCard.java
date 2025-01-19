@@ -4,6 +4,7 @@ import com.lingolearn.study.flashcard.domain.Confidence;
 import com.lingolearn.vocabulary.word.domain.Word;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record StudyCard(
         Long id,
@@ -16,5 +17,6 @@ public record StudyCard(
     public StudyCard updateSpacing(boolean wasCorrect, Confidence confidence) {
         // TODO: Impl
         // SRS algorithm impl
+        return null;
     }
 }

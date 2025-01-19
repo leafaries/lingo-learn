@@ -1,4 +1,4 @@
-package com.lingolearn.vocabulary.set.adapter.viewmodel;
+package com.lingolearn.vocabulary.set.adapter.viewmodels;
 
 import java.util.List;
 

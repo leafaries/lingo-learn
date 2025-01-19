@@ -8,7 +8,7 @@ import java.util.List;
 public record StudySession(
         Long id,
         Long setId,
-        StudyMode mode,
+//        StudyMode mode,
         LocalDateTime startTime,
         LocalDateTime endTime,
         int correctAnswers,
