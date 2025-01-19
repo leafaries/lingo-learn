@@ -9,6 +9,14 @@ public class Main {
         var v = new View(vm);
         vm.mainBusinessLogic();
 
+        // Testing of word functionality
+//        WordViewModel wordViewModel = new WordViewModel();
+//        WordInteractorOutputPort wordPresenter = new WordPresenter(wordViewModel);
+//        WordRepository wordRepository =
+//        WordInteractorInputPort wordInteractor = new WordInteractor(wordPresenter, );
+//        WordController wordController = new WordController();
+//        WordView wordView = new WordView();
+
         // some logic
 
 //        // 1. Create a vocabulary set using SetCreator

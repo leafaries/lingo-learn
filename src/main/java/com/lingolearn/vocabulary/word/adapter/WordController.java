@@ -1,8 +1,9 @@
 package com.lingolearn.vocabulary.word.adapter;
 
-import com.lingolearn.NotImplementedException;
 import com.lingolearn.vocabulary.word.adapter.dtos.CreateWordDTO;
+import com.lingolearn.vocabulary.word.adapter.dtos.RecordAttemptDTO;
 import com.lingolearn.vocabulary.word.adapter.dtos.UpdateWordDTO;
+import com.lingolearn.vocabulary.word.domain.Difficulty;
 import com.lingolearn.vocabulary.word.usecase.WordInteractorInputPort;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.CreateWordRequestModel;
 import com.lingolearn.vocabulary.word.usecase.requestmodel.UpdateWordRequestModel;
@@ -15,21 +16,18 @@ public class WordController {
     }
 
     public void createWord(CreateWordDTO dto) {
-        var createWordRequestModel = new CreateWordRequestModel(
+        var request = new CreateWordRequestModel(
                 dto.original(),
                 dto.translation(),
                 dto.partOfSpeech(),
                 dto.exampleSentences(),
                 dto.difficulty()
         );
-
-        // TODO: Impl
-        throw new NotImplementedException();
-//        createWordUseCase.execute(createWordRequestModel);
+        wordInteractor.createWord(request);
     }
 
     public void updateWord(UpdateWordDTO dto) {
-        var updateWordRequestModel = new UpdateWordRequestModel(
+        var request = new UpdateWordRequestModel(
                 dto.id(),
                 dto.original(),
                 dto.translation(),
@@ -37,15 +35,26 @@ public class WordController {
                 dto.exampleSentences(),
                 dto.difficulty()
         );
+        wordInteractor.updateWord(request);
+    }
 
-        // TODO: Impl
-        throw new NotImplementedException();
-//        updateWordUseCase.execute(updateWordRequestModel);
+    public void recordAttempt(RecordAttemptDTO dto) {
+        wordInteractor.recordAttempt(dto.wordId(), dto.wasCorrect());
     }
 
     public void deleteWord(Long id) {
-        // TODO: Impl
-        throw new NotImplementedException();
-//        deleteWordUseCase.execute(id);
+        wordInteractor.deleteWord(id);
+    }
+
+    public void getAllWords() {
+        wordInteractor.getAllWords();
+    }
+
+    public void getWord(Long id) {
+        wordInteractor.getWord(id);
+    }
+
+    public void getWordsByDifficulty(Difficulty difficulty) {
+        wordInteractor.getWordsByDifficulty(difficulty);
     }
 }
