@@ -1,10 +1,16 @@
 package com.lingolearn;
 
+import com.lingolearn.presententatioofthepubsub.SomeRandomViewModel;
+import com.lingolearn.presententatioofthepubsub.View;
+
 public class Main {
     public static void main(String[] args) {
         var vm = new SomeRandomViewModel();
         var v = new View(vm);
         vm.mainBusinessLogic();
+
+        // some logic
+
 //        // 1. Create a vocabulary set using SetCreator
 //        VocabularySetDTO foodSet = new LingoLearnApp.VocabularyManager.SetCreator("Food", "Basic food vocabulary")
 //                .addWord("apple", "jabłko")

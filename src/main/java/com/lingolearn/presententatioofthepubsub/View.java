@@ -1,4 +1,4 @@
-package com.lingolearn;
+package com.lingolearn.presententatioofthepubsub;
 
 public class View implements Subscriber {
     SomeRandomViewModel someRandomViewModel;

@@ -1,4 +1,4 @@
-package com.lingolearn;
+package com.lingolearn.presententatioofthepubsub;
 
 @FunctionalInterface
 public interface Subscriber {
