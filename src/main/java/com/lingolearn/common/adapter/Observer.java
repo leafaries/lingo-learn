@@ -1,4 +1,4 @@
-package com.lingolearn.vocabulary.word.adapter;
+package com.lingolearn.common.adapter;
 
 public interface Observer<T> {
     void update(T data);

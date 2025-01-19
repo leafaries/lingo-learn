@@ -1,6 +1,6 @@
 package com.lingolearn.vocabulary.word.infra.ui;
 
-import com.lingolearn.vocabulary.word.adapter.Observer;
+import com.lingolearn.common.adapter.Observer;
 import com.lingolearn.vocabulary.word.adapter.WordController;
 import com.lingolearn.vocabulary.word.adapter.WordViewModel;
 import com.lingolearn.vocabulary.word.adapter.WordViewState;

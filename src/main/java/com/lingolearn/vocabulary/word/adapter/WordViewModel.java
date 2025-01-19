@@ -1,5 +1,8 @@
 package com.lingolearn.vocabulary.word.adapter;
 
+import com.lingolearn.common.adapter.Observable;
+import com.lingolearn.common.adapter.Observer;
+
 import java.util.ArrayList;
 import java.util.List;
 
