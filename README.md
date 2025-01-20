@@ -1,6 +1,8 @@
 # lingo-learn
 
-**Lingo-learn-hub** is a Java core module developed as a sample university project to test skills in design patterns and modular software design. The project emphasizes creating reusable core functionality for language learning, which can easily be extended by adding custom user interface (UI) modules.
+**Lingo-learn** is a Java core module developed as a sample university project to test skills in design patterns and
+modular software design. The project emphasizes creating reusable core functionality for language learning, which can
+easily be extended by adding custom user interface (UI) modules.
 
 ## Problem Description
 
@@ -48,27 +50,6 @@ Then, build the project using your preferred Java build tool (e.g., Maven or Gra
 - **Flashcards**: Display word/translation pairs with user response validation
 - **Multiple Choice**: Present options for translation selection
 - **Translation Input**: Allow manual translation entry
-
-### Progress Tracking
-
-The core module is designed to handle the application's main functionality. Developers can fork the repository and create custom UI modules that connect to the core for language-learning features. Here's an example of how you might interact with the core module in Java:
-
-```java
-import com.lingo.learn.core.LanguageTrainer;
-
-public class Main {
-    public static void main(String[] args) {
-        LanguageTrainer trainer = new LanguageTrainer();
-
-        // Example usage: Get the next exercise
-        System.out.println(trainer.getNextExercise());
-
-        // Additional functionalities like progress tracking and report generation
-        trainer.showProgress();
-        trainer.generateReport();
-    }
-}
-```
 
 ## License
 
